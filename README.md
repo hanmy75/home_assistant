@@ -1,9 +1,7 @@
 Home Assistant configuration
 ============================
 
-### Default Config and Update
-
-apt-get update:
+### apt-get update
 ```
 $ sudo apt-get update
 $ sudo apt-get upgrade -y
@@ -11,9 +9,10 @@ $ sudo apt-get upgrade -y
 
 
 ### Install
+
+- Install dependencies
 ```
 $ sudo apt-get install python3 python3-venv python3-pip git dnsmasq
-
 ```
 
 - Add an account for Home Assistant and create a directory
@@ -71,7 +70,7 @@ $ sudo systemctl enable autologin@.service
 
 ### DDNS (https://www.dynu.com)
 
-Config
+- Config
 ```
 $ cd ~
 $ nano dynu.sh
@@ -79,7 +78,6 @@ $ nano dynu.sh
 echo url="https://api.dynu.com/nic/update?username=your_id&password=your_password" | curl -k -o ~/dynudns/dynu.log -K -
 ------------------------------------------------------
 $ chmod 755 dynu.sh
-
 $ crontab -e
 ------------------------------------------------------
 10 * * * * /home/pi/dynu.sh >/dev/null 2>&1
