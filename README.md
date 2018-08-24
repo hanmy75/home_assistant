@@ -13,6 +13,7 @@ $ sudo apt-get upgrade -y
 - Install dependencies
 ```
 $ sudo apt-get install python3 python3-venv python3-pip git dnsmasq
+$ sudo pip3 install requests
 ```
 
 - Add an account for Home Assistant and create a directory
@@ -33,7 +34,7 @@ $ source bin/activate
 
 - Install a required python package.
 ```
-(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ python3 -m pip install wheel requests
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ python3 -m pip install wheel
 ```
 
 - Install Home Assistant
