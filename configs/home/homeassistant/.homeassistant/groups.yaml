@@ -1,0 +1,5 @@
+Living Room:
+  entities:
+    - switch.window
+    - switch.center
+    - switch.table
