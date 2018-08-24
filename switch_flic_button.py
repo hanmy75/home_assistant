@@ -18,6 +18,8 @@ HA_DEIVE_ENTRY = "group.living_room"
 
 FLIC_DEVICE_ADDR = "80:e4:da:72:7b:e8"
 
+lastTriggerTime = 0
+
 # Setup logging level
 logging.basicConfig(level=logging.DEBUG)
 client = fliclib.FlicClient("localhost")
@@ -80,7 +82,7 @@ def process_light():
 
 # Button detect event
 def got_button(channel, click_type, was_queued, time_diff):
-    if (channel.bd_addr == DEVICE_ADDR and str(click_type) == "ClickType.ButtonDown") :
+    if (channel.bd_addr == FLIC_DEVICE_ADDR and str(click_type) == "ClickType.ButtonDown") :
         logging.debug("Button pressed.")
         process_light()
 
