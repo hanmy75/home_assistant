@@ -41,6 +41,11 @@ $ source bin/activate
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install homeassistant
 ```
 
+- Run hass for first configuration
+```
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ hass
+```
+
 - UPDATING
 ```
 $ sudo -u homeassistant -H -s
@@ -57,6 +62,7 @@ $ cd ~
 $ git clone https://github.com/hanmy75/home_assistant.git
 $ sudo cp ~/home_assistant/configs/* / -rf
 $ sudo chown pi.pi dynu.sh turn_off.sh
+$ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 ```
 
 
@@ -75,7 +81,7 @@ $ sudo systemctl enable autologin@.service
 $ cd ~
 $ nano dynu.sh
 ------------------------------------------------------
-echo url="https://api.dynu.com/nic/update?username=your_id&password=your_password" | curl -k -o ~/dynudns/dynu.log -K -
+echo url="https://api.dynu.com/nic/update?username=your_id&password=your_password" | curl -k -o ~/dynu.log -K -
 ------------------------------------------------------
 $ chmod 755 dynu.sh
 $ crontab -e
