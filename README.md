@@ -12,7 +12,7 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip git dnsmasq
+$ sudo apt-get install python3 python3-venv python3-pip git dnsmasq nginx certbot
 $ sudo pip3 install requests
 ```
 
@@ -72,6 +72,11 @@ $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 $ sudo systemctl enable home-assistant@homeassistant
 $ sudo systemctl start home-assistant@homeassistant
 $ sudo systemctl enable autologin@.service
+```
+
+### Get SSL Certificate
+```
+$ sudo certbot certonly --standalone -d example.com
 ```
 
 
