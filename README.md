@@ -18,7 +18,7 @@ $ sudo pip3 install requests
 
 - Add an account for Home Assistant and create a directory
 ```
-$ sudo useradd -rm homeassistant -G dialout,gpio
+$ sudo useradd -rm homeassistant -G dialout,gpio,video
 $ cd /srv
 $ sudo mkdir homeassistant
 $ sudo chown homeassistant:homeassistant homeassistant

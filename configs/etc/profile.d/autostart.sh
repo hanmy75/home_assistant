@@ -7,7 +7,4 @@ if [ "`tty`" = "/dev/tty1" ]; then
 
     # Launch flic daemon
     sudo $RUN_FOLDER/flicd -d -f /home/pi/flic.sqlite3
-    sleep 4
-    python3 $RUN_FOLDER/switch_flic_button.py &
-
 fi
