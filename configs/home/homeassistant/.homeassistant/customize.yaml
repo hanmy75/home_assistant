@@ -1,0 +1,35 @@
+sun.sun:
+  hidden: true
+
+switch.window:
+  icon: mdi:lightbulb
+  device_class: light
+
+switch.center:
+  icon: mdi:lightbulb
+  device_class: light
+
+switch.table:
+  icon: mdi:lightbulb
+  device_class: light
+
+binary_sensor.TV:
+  icon: mdi:monitor
+  device_class: connectivity
+
+binary_sensor.flic_80e4da727be8:
+  friendly_name: flic_btn
+  hidden: true
+
+binary_sensor.motion:
+  device_class: motion
+
+binary_sensor.light:
+  device_class: light
+
+media_player.home_un55f7100:
+  hidden: true
+
+media_player.my_box:
+  hidden: true
+

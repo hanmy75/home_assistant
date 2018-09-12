@@ -2,8 +2,8 @@ homeassistant:
   # Name of the location where Home Assistant is running
   name: Home
   # Location required to calculate the time the sun rises and sets
-  latitude: 0
-  longitude: 0
+  latitude:  !secret zone_home_lati
+  longitude: !secret zone_home_long
   # Impacts weather/sunrise data (altitude above sea level in meters)
   elevation: 0
   # metric for Metric, imperial for Imperial
@@ -13,9 +13,6 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   # Customize all entities in a domain
-  customize_domain:
-    switch:
-      icon: mdi:lightbulb
 
 # Show links to resources in log and frontend
 introduction:
@@ -31,8 +28,6 @@ http:
   # api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
-  trusted_networks:
-    - 127.0.0.1
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -58,8 +53,26 @@ logbook:
 # Enables a map showing the location of tracked devices
 map:
 
+# Zone
+zone:
+  - name: Office
+    latitude:  !secret zone_office_lati
+    longitude: !secret zone_office_long
+    icon: mdi:office
+
+  - name: School
+    latitude:  !secret zone_school_lati
+    longitude: !secret zone_school_long
+    icon: mdi:school
+
+# Tracker
+device_tracker:
+  - platform: google_maps
+    username: !secret google_id
+    password: !secret google_pw
+
 # Track the sun
-#sun:
+sun:
 
 # Weather prediction
 #sensor:
@@ -68,11 +81,34 @@ map:
 # Text to speech
 tts:
   - platform: google
+    language: 'ko'
+
+# Binary Sensor
+binary_sensor:
+  - platform: flic
+  - platform: ping
+    host: 192.168.0.16
+    name: TV
+    scan_interval: 60
+  - platform: rpi_gpio
+    ports:
+      22: motion
+      27: light
+
+# Sensor
+sensor:
+  - platform: dht
+    sensor: AM2302
+    pin: 17
+    name: Room
+    monitored_conditions:
+      - temperature
+      - humidity
 
 # Device List
 switch:
   - platform: rpi_rf
-    gpio: 17
+    gpio: 18
     switches:
       window:
         code_on:  0x00EA083F
