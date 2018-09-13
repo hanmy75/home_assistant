@@ -7,4 +7,7 @@ if [ "`tty`" = "/dev/tty1" ]; then
 
     # Launch flic daemon
     sudo $RUN_FOLDER/flicd -d -f /home/pi/flic.sqlite3
+
+    # Run MJPEG Stream Server
+    mjpg_streamer -o "output_http.so" -i "input_raspicam.so -x 640 -y 480 -fps 15" &
 fi

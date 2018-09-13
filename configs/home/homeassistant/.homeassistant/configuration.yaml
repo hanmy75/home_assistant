@@ -87,8 +87,9 @@ tts:
 
 # Camera
 camera:
-  - platform: rpi_camera
+  - platform: mjpeg
     name: Room Camera
+    mjpeg_url: http://localhost:8080/?action=stream
 
 # Binary Sensor
 binary_sensor:
