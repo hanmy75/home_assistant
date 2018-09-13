@@ -12,7 +12,7 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip git dnsmasq nginx certbot
+$ sudo apt-get install python3 python3-venv python3-pip git nginx certbot
 $ sudo pip3 install requests
 ```
 
@@ -79,30 +79,12 @@ $ sudo systemctl enable autologin@.service
 $ sudo certbot certonly --standalone -d example.com
 ```
 
-
-### DDNS (https://www.dynu.com)
-
-- Config
-```
-$ cd ~
-$ nano dynu.sh
-------------------------------------------------------
-echo url="https://api.dynu.com/nic/update?username=your_id&password=your_password" | curl -k -o ~/dynu.log -K -
-------------------------------------------------------
-$ chmod 755 dynu.sh
-$ crontab -e
-------------------------------------------------------
-10 * * * * /home/pi/dynu.sh >/dev/null 2>&1
-------------------------------------------------------
-```
-
-
 ### PIN Out
 ```
 +5V : RED
 GND : BROWN
-RF SW  : GPIO17 BLUE
-MOTION : GPIO18 GREEN
+RF SW  : GPIO18 BLUE
+MOTION : GPIO22 GREEN
 LIGHT  : GPIO27 YELLOW
-THERMAL: GPIO22 ORANGE
+THERMAL: GPIO17 ORANGE
 ```
