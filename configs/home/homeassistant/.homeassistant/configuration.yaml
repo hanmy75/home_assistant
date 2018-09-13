@@ -13,6 +13,8 @@ homeassistant:
   # Customization file
   customize: !include customize.yaml
   # Customize all entities in a domain
+  whitelist_external_dirs:
+    - /tmp
 
 # Show links to resources in log and frontend
 introduction:
@@ -83,6 +85,11 @@ tts:
   - platform: google
     language: 'ko'
 
+# Camera
+camera:
+  - platform: rpi_camera
+    name: Room Camera
+
 # Binary Sensor
 binary_sensor:
   - platform: flic
@@ -92,8 +99,12 @@ binary_sensor:
     scan_interval: 60
   - platform: rpi_gpio
     ports:
-      22: motion
-      27: light
+      22: Motion
+  - platform: rpi_gpio
+    ports:
+      27: Dark
+    bouncetime: 1000
+    invert_logic: true
 
 # Sensor
 sensor:
@@ -110,13 +121,13 @@ switch:
   - platform: rpi_rf
     gpio: 18
     switches:
-      window:
+      Window:
         code_on:  0x00EA083F
         code_off: 0x00EA083E
-      center:
+      Center:
         code_on:  0x00EB083C
         code_off: 0x00EB083D
-      table:
+      Table:
         code_on:  0x00EC083C
         code_off: 0x00EC083B
 

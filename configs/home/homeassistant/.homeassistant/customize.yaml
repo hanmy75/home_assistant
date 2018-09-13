@@ -15,7 +15,7 @@ switch.table:
 
 binary_sensor.TV:
   icon: mdi:monitor
-  device_class: connectivity
+  device_class: power
 
 binary_sensor.flic_80e4da727be8:
   friendly_name: flic_btn
@@ -24,7 +24,8 @@ binary_sensor.flic_80e4da727be8:
 binary_sensor.motion:
   device_class: motion
 
-binary_sensor.light:
+binary_sensor.dark:
+  icon: mdi:weather-night
   device_class: light
 
 media_player.home_un55f7100:

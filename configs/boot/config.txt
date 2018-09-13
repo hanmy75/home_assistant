@@ -60,3 +60,5 @@ gpu_mem=128
 # Disable WiFi
 dtoverlay=pi3-disable-wifi
 
+# Turn off Camera LED
+disable_camera_led=1

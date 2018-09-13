@@ -1,9 +1,3 @@
-Family:
-  entities:
-    - device_tracker.google_maps_hanmy75gmailcom
-    - device_tracker.google_maps_115178832848292642971
-    - device_tracker.google_maps_101237996651145287128
-
 Living Room:
   entities:
     - switch.window
@@ -15,6 +9,11 @@ Sensors:
     - sensor.room_temperature
     - sensor.room_humidity
     - binary_sensor.motion
-    - binary_sensor.light
+    - binary_sensor.dark
     - binary_sensor.tv
 
+Family:
+  entities:
+    - device_tracker.google_maps_hanmy75gmailcom
+    - device_tracker.google_maps_115178832848292642971
+    - device_tracker.google_maps_101237996651145287128
