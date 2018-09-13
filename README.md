@@ -12,7 +12,7 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip git nginx certbot cmake libjpeg8-dev
+$ sudo apt-get install python3 python3-venv python3-pip git dnsmasq nginx certbot cmake libjpeg8-dev
 $ sudo pip3 install requests
 ```
 
