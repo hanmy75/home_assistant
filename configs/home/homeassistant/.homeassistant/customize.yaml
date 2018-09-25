@@ -1,5 +1,5 @@
-sun.sun:
-  hidden: true
+#sun.sun:
+#  hidden: true
 
 switch.window:
   icon: mdi:lightbulb

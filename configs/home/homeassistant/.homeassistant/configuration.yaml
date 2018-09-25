@@ -77,8 +77,12 @@ device_tracker:
 sun:
 
 # Weather prediction
-#sensor:
-#  - platform: yr
+weather:
+  - platform: my_darksky
+    name: Weather
+    api_key: !secret darksky_api_key
+    units: auto
+
 
 # Text to speech
 tts:
@@ -94,18 +98,21 @@ camera:
 # Binary Sensor
 binary_sensor:
   - platform: flic
+
   - platform: ping
     host: 192.168.0.16
     name: TV
     scan_interval: 60
+
   - platform: rpi_gpio
     ports:
       22: Motion
-  - platform: rpi_gpio
-    ports:
-      27: Dark
-    bouncetime: 1000
-    invert_logic: true
+
+  #- platform: rpi_gpio
+  #  ports:
+  #    27: Dark
+  #  bouncetime: 1000
+  #  invert_logic: true
 
 # Sensor
 sensor:
@@ -116,6 +123,13 @@ sensor:
     monitored_conditions:
       - temperature
       - humidity
+
+  - platform: my_darksky
+    api_key: !secret darksky_api_key
+    units: auto
+    update_interval: 00:10:00
+    monitored_conditions:
+      - summary
 
 # Device List
 switch:
