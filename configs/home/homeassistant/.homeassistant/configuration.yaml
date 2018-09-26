@@ -91,7 +91,7 @@ tts:
 
 # Camera
 camera:
-  - platform: mjpeg
+  - platform: my_mjpeg
     name: Room Camera
     mjpeg_url: http://localhost:8080/?action=stream
 
