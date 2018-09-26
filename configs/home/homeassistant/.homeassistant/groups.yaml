@@ -9,7 +9,7 @@ Sensors:
     - sensor.room_temperature
     - sensor.room_humidity
     - binary_sensor.motion
-    - binary_sensor.dark
+    - sun.sun
     - binary_sensor.tv
 
 Family:

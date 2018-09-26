@@ -1,0 +1,123 @@
+- id: '1536174384148'
+  alias: Light On/Off by flic button
+  trigger:
+  - event_data:
+      button_name: flic_80e4da727be8
+      click_type: single
+    event_type: flic_click
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: group.living_room
+    service: homeassistant.toggle
+- id: '1537021216556'
+  alias: Welcome Home MY
+  trigger:
+  - entity_id: device_tracker.google_maps_hanmy75gmailcom
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_play.my_mini
+      message: 어서 오세요 문용님, 집에 오신걸 환영 합니다.
+    service: tts.google_say
+- id: '1537024134650'
+  alias: Welcome Home Sangsuk
+  trigger:
+  - entity_id: device_tracker.google_maps_115178832848292642971
+    from: not_home
+    platform: state
+    to: home
+  condition: []
+  action:
+  - data:
+      entity_id: media_play.my_mini
+      message: 어서 오세요 상숙님, 집에 오신걸 환영 합니다.
+    service: tts.google_say
+- id: '1537967583786'
+  alias: Light on by motion
+  trigger:
+  - entity_id: binary_sensor.motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.debounce_flag
+    state: 'off'
+  - condition: state
+    entity_id: group.living_room
+    state: 'off'
+  - condition: state
+    entity_id: sun.sun
+    state: 'after: sunset'
+  action:
+  - data:
+      entity_id: group.living_room
+    service: homeassistant.turn_on
+- id: '1537969783296'
+  alias: Trigger debounce timer by Light off
+  trigger:
+  - entity_id: group.living_room
+    from: 'on'
+    platform: state
+    to: 'off'
+  condition: []
+  action:
+  - data:
+      entity_id: timer.debounce
+    service: timer.start
+  - data:
+      entity_id: input_boolean.debounce_flag
+    service: homeassistant.turn_on
+- id: '1537971084328'
+  alias: Trigger debounce flag by timer
+  trigger:
+  - event_data:
+      entity_id: timer.debounce
+    event_type: timer.finished
+    platform: event
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.debounce_flag
+    service: homeassistant.turn_off
+- id: '1537971497629'
+  alias: Enable First Morning Trigger
+  trigger:
+  - at: '5:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.trigger_first_morning
+    service: homeassistant.turn_on
+- id: '1537971572219'
+  alias: Disable First Morning Trigger
+  trigger:
+  - at: '12:00'
+    platform: time
+  condition: []
+  action:
+  - data:
+      entity_id: input_boolean.trigger_first_morning
+    service: homeassistant.turn_off
+- id: '1537971931130'
+  alias: First Morning Motion
+  trigger:
+  - entity_id: binary_sensor.motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: input_boolean.trigger_first_morning
+    state: 'on'
+  action:
+  - data:
+      entity_id: media_play.my_mini
+      message: 좋은 아침이에요. {{states.sensor.dark_sky_summary.state}}'
+    service: tts.google_say

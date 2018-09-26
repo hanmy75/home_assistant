@@ -156,6 +156,18 @@ cloud:
       include_domains:
         - switch
 
+# Flags for automation
+input_boolean:
+  trigger_first_morning:
+    name: Waiting for first morning motion
+
+  debounce_flag:
+    name: Debounce for motion
+
+timer:
+  debounce:
+    duration: '00:01:00'
+
 
 group: !include groups.yaml
 automation: !include automations.yaml
