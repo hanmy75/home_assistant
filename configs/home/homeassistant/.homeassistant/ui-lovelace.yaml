@@ -46,6 +46,10 @@ views:
     cards:
       - type: media-control
         entity: media_player.my_mini
+      - type: media-control
+        entity: media_player.my_audio
+      - type: media-control
+        entity: media_player.my_kitchen
 
   - title: Script
     cards:
@@ -64,8 +68,3 @@ views:
         entities:
           - input_boolean.debounce_flag
           - input_boolean.trigger_first_morning
-
-      - type: entities
-        title: Script
-        entities:
-          - script.1537949582282

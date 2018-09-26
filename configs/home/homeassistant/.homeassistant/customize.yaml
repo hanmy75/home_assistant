@@ -37,3 +37,5 @@ media_player.my_box:
 sensor.dark_sky_summary:
   hidden: true
 
+timer.debounce:
+  hidden: true

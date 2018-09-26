@@ -21,7 +21,7 @@
   condition: []
   action:
   - data:
-      entity_id: media_play.my_mini
+      entity_id: media_player.my_mini
       message: 어서 오세요 문용님, 집에 오신걸 환영 합니다.
     service: tts.google_say
 - id: '1537024134650'
@@ -34,7 +34,7 @@
   condition: []
   action:
   - data:
-      entity_id: media_play.my_mini
+      entity_id: media_player.my_mini
       message: 어서 오세요 상숙님, 집에 오신걸 환영 합니다.
     service: tts.google_say
 - id: '1537967583786'
@@ -117,7 +117,7 @@
     entity_id: input_boolean.trigger_first_morning
     state: 'on'
   action:
-  - data:
-      entity_id: media_play.my_mini
+  - data_template:
+      entity_id: media_player.my_mini
       message: 좋은 아침이에요. {{states.sensor.dark_sky_summary.state}}'
-    service: tts.google_say
+    service_template: tts.google_say
