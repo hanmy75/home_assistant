@@ -34,3 +34,6 @@ media_player.home_un55f7100:
 media_player.my_box:
   hidden: true
 
+sensor.dark_sky_summary:
+  hidden: true
+

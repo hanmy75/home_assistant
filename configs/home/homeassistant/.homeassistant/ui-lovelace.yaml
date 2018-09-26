@@ -1,0 +1,62 @@
+title: MY's Home Assistant
+views:
+  - title: Home
+    cards:
+      - type: entities
+        title: Living Room
+        entities:
+          - switch.window
+          - switch.center
+          - switch.table
+
+      - type: entities
+        title: Sensors
+        entities:
+          - sensor.room_temperature
+          - sensor.room_humidity
+          - binary_sensor.motion
+          - binary_sensor.dark
+          - binary_sensor.tv
+
+      - type: weather-forecast
+        entity: weather.weather
+
+  - title: Location
+    cards:
+      - type: entities
+        title: Family
+        entities:
+         - device_tracker.google_maps_hanmy75gmailcom
+         - device_tracker.google_maps_115178832848292642971
+         - device_tracker.google_maps_101237996651145287128
+
+      - type: map
+        entities:
+          - entity: device_tracker.google_maps_hanmy75gmailcom
+          - entity: device_tracker.google_maps_115178832848292642971
+          - entity: device_tracker.google_maps_101237996651145287128
+          - zone.home
+
+  - title: Camera
+    cards:
+      - type: picture-entity
+        entity: camera.room_camera
+
+  - title: Media
+    cards:
+      - type: media-control
+        entity: media_player.my_mini
+
+  - title: Script
+    cards:
+      - type: entities
+        title: Automation
+        entities:
+          - automation.light_onoff_by_flic_button
+          - automation.welcome_home_my
+          - automation.welcome_home_sangsuk
+
+      - type: entities
+        title: Script
+        entities:
+          - script.1537949582282
