@@ -121,3 +121,29 @@
       entity_id: media_player.my_mini
       message: 좋은 아침이에요. {{states.sensor.dark_sky_summary.state}}'
     service_template: tts.google_say
+- id: '1538072025345'
+  alias: MY goto Office
+  trigger:
+  - entity_id: device_tracker.google_maps_hanmy75gmailcom
+    from: not_home
+    platform: state
+    to: office
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.my_mini
+      message: 문용님이 사무실에 도착했습니다.
+    service: tts.google_say
+- id: '1538072184385'
+  alias: MY out of Office
+  trigger:
+  - entity_id: device_tracker.google_maps_hanmy75gmailcom
+    from: office
+    platform: state
+    to: not_home
+  condition: []
+  action:
+  - data:
+      entity_id: media_player.my_mini
+      message: 문용님이 사무실에 도착했습니다.
+    service: tts.google_say

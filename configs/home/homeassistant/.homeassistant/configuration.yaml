@@ -148,6 +148,19 @@ switch:
         code_on:  0x00EC083C
         code_off: 0x00EC083B
 
+  - platform: template
+    switches:
+      camera:
+        value_template: "{{ is_state('camera.room_camera', 'streaming') }}"
+        turn_on:
+          service: camera.turn_on
+          data:
+            entity_id: camera.room_camera
+        turn_off:
+          service: camera.turn_off
+          data:
+            entity_id: camera.room_camera
+
 cloud:
   google_actions:
     filter:

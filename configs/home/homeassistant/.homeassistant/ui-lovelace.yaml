@@ -42,6 +42,12 @@ views:
       - type: picture-entity
         entity: camera.room_camera
 
+      - type: entities
+        title:
+        show_header_toggle: false
+        entities:
+          - switch.camera
+
   - title: Media
     cards:
       - type: media-control
@@ -57,10 +63,12 @@ views:
         title: Automation
         entities:
           - automation.light_onoff_by_flic_button
+          - automation.light_on_by_motion
           - automation.welcome_home_my
           - automation.welcome_home_sangsuk
           - automation.first_morning_motion
-          - automation.light_on_by_motion
+          - automation.my_goto_office
+          - automation.my_out_of_office
 
       - type: entities
         title: Flags

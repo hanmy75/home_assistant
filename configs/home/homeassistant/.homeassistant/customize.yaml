@@ -13,6 +13,9 @@ switch.table:
   icon: mdi:lightbulb
   device_class: light
 
+switch.camera:
+  icon: mdi:camcorder
+
 binary_sensor.TV:
   icon: mdi:monitor
   device_class: power
