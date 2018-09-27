@@ -95,6 +95,7 @@ camera:
   - platform: my_mjpeg
     name: Room Camera
     mjpeg_url: http://localhost:8080/?action=stream
+    off_image_url: http://localhost:8123/local/off_image.jpg
 
 # Binary Sensor
 binary_sensor:

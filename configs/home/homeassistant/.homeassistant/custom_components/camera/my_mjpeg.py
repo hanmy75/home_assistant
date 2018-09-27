@@ -6,6 +6,7 @@ https://home-assistant.io/components/camera.mjpeg/
 """
 import asyncio
 import logging
+import subprocess
 from contextlib import closing
 
 import aiohttp
@@ -26,12 +27,14 @@ _LOGGER = logging.getLogger(__name__)
 
 CONF_MJPEG_URL = 'mjpeg_url'
 CONF_STILL_IMAGE_URL = 'still_image_url'
+CONF_OFF_IMAGE_URL = 'off_image_url'
 CONTENT_TYPE_HEADER = 'Content-Type'
 
 DEFAULT_NAME = 'Mjpeg Camera'
 
 PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Required(CONF_MJPEG_URL): cv.url,
+    vol.Required(CONF_OFF_IMAGE_URL): cv.url,
     vol.Optional(CONF_STILL_IMAGE_URL): cv.url,
     vol.Optional(CONF_AUTHENTICATION, default=HTTP_BASIC_AUTHENTICATION):
         vol.In([HTTP_BASIC_AUTHENTICATION, HTTP_DIGEST_AUTHENTICATION]),
@@ -39,6 +42,24 @@ PLATFORM_SCHEMA = PLATFORM_SCHEMA.extend({
     vol.Optional(CONF_PASSWORD): cv.string,
     vol.Optional(CONF_USERNAME): cv.string,
 })
+
+
+def kill_mjpg_streamer(*args):
+    """Kill any previously running mjpg_streamer process.."""
+    subprocess.Popen(['killall', 'mjpg_streamer'],
+                 stdout=subprocess.DEVNULL,
+                 stderr=subprocess.STDOUT)
+
+def run_mjpg_streamer(*args):
+    """Kill any previously running mjpg_streamer process.."""
+    cmd_args = [
+        'mjpg_streamer', '-b', '-o', "output_http.so",
+        '-i', "input_raspicam.so -x 640 -y 480 -fps 15"
+    ]
+
+    subprocess.Popen(cmd_args,
+                 stdout=subprocess.DEVNULL,
+                 stderr=subprocess.STDOUT)
 
 
 @asyncio.coroutine
@@ -73,8 +94,9 @@ class MjpegCamera(Camera):
         self._username = device_info.get(CONF_USERNAME)
         self._password = device_info.get(CONF_PASSWORD)
         self._mjpeg_url = device_info[CONF_MJPEG_URL]
+        self._off_image_url = device_info[CONF_OFF_IMAGE_URL]
         self._still_image_url = device_info.get(CONF_STILL_IMAGE_URL)
-        self.is_streaming = True
+        self.is_streaming = False
 
         self._auth = None
         if self._username and self._password:
@@ -110,15 +132,20 @@ class MjpegCamera(Camera):
 
     def camera_image(self):
         """Return a still image response from the camera."""
+        if self.is_streaming == False:
+            selected_url = self._off_image_url;
+        else:
+            selected_url = self._mjpeg_url;
+
         if self._username and self._password:
             if self._authentication == HTTP_DIGEST_AUTHENTICATION:
                 auth = HTTPDigestAuth(self._username, self._password)
             else:
                 auth = HTTPBasicAuth(self._username, self._password)
             req = requests.get(
-                self._mjpeg_url, auth=auth, stream=True, timeout=10)
+                selected_url, auth=auth, stream=self.is_streaming, timeout=10)
         else:
-            req = requests.get(self._mjpeg_url, stream=True, timeout=10)
+            req = requests.get(selected_url, stream=self.is_streaming, timeout=10)
 
         # https://github.com/PyCQA/pylint/issues/1437
         # pylint: disable=no-member
@@ -129,6 +156,10 @@ class MjpegCamera(Camera):
         """Generate an HTTP MJPEG stream from the camera."""
         # aiohttp don't support DigestAuth -> Fallback
         if self._authentication == HTTP_DIGEST_AUTHENTICATION:
+            await super().handle_async_mjpeg_stream(request)
+            return
+
+        if self.is_streaming == False:
             await super().handle_async_mjpeg_stream(request)
             return
 
@@ -144,17 +175,15 @@ class MjpegCamera(Camera):
         return self._name
 
     @property
-    def is_on(self):
-        """Whether camera is on (streaming)."""
-        return self.is_streaming
-
     def turn_off(self):
         """Turn off camera."""
         self.is_streaming = False
+        kill_mjpg_streamer()
         self.schedule_update_ha_state()
 
+    @property
     def turn_on(self):
         """Turn on camera."""
         self.is_streaming = True
+        run_mjpg_streamer()
         self.schedule_update_ha_state()
-        
