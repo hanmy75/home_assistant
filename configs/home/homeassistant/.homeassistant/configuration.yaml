@@ -118,7 +118,7 @@ binary_sensor:
 
 # Sensor
 sensor:
-  - platform: dht
+  - platform: my_dht
     sensor: AM2302
     pin: 17
     name: Room
