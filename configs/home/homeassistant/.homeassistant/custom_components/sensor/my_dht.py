@@ -161,6 +161,8 @@ class DHTClient:
         humidity, temperature = self.adafruit_dht.read_retry(
             self.sensor, self.pin)
         if temperature and (abs(self.prev_temperature-temperature)<THRESHOLD):
+            self.prev_temperature = temperature
             self.data[SENSOR_TEMPERATURE] = temperature
         if humidity and (abs(self.prev_humidity-humidity)<THRESHOLD):
+            self.prev_humidity = humidity
             self.data[SENSOR_HUMIDITY] = humidity
