@@ -55,6 +55,11 @@ logbook:
 # Enables a map showing the location of tracked devices
 map:
 
+# DDNS
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
 # Zone
 zone:
   - name: Office
