@@ -48,6 +48,16 @@ conversation:
 
 # Enables support for tracking state changes over time
 history:
+  include:
+    domains:
+      - binary_sensor
+      - switch
+      - camera
+      - device_tracker
+    entities:
+      - sensor.room_temperature
+      - sensor.room_humidity
+      - sensor.watching_tv_today
 
 # View all events in a logbook
 logbook:
@@ -138,6 +148,14 @@ sensor:
     monitored_conditions:
       - summary
 
+  - platform: history_stats
+    name: Watching TV today
+    entity_id: binary_sensor.tv
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
+
 # Device List
 switch:
   - platform: rpi_rf
@@ -173,6 +191,7 @@ cloud:
       - switch.window
       - switch.center
       - switch.table
+      - switch.camera
       include_domains:
         - switch
 

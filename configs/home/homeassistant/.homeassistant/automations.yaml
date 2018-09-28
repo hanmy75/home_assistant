@@ -51,9 +51,8 @@
   - condition: state
     entity_id: group.living_room
     state: 'off'
-  - condition: state
-    entity_id: sun.sun
-    state: 'after: sunset'
+  - condition: sun
+    after: sunset
   action:
   - data:
       entity_id: group.living_room
@@ -121,6 +120,9 @@
       entity_id: media_player.my_mini
       message: 좋은 아침이에요. {{states.sensor.dark_sky_summary.state}}'
     service_template: tts.google_say
+  - data:
+      entity_id: input_boolean.trigger_first_morning
+    service: homeassistant.turn_off
 - id: '1538072025345'
   alias: MY goto Office
   trigger:

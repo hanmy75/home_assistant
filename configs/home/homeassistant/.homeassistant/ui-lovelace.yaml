@@ -17,6 +17,7 @@ views:
           - binary_sensor.motion
           - sun.sun
           - binary_sensor.tv
+          - sensor.watching_tv_today
 
       - type: weather-forecast
         entity: weather.weather
