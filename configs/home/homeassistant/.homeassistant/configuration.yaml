@@ -55,8 +55,8 @@ history:
       - camera
       - device_tracker
     entities:
-      - sensor.room_temperature
-      - sensor.room_humidity
+      - sensor.temperature
+      - sensor.humidity
       - sensor.watching_tv_today
 
 # View all events in a logbook
@@ -133,7 +133,7 @@ binary_sensor:
 
 # Sensor
 sensor:
-  - platform: my_dht
+  - platform: dht
     sensor: AM2302
     pin: 17
     name: Room
@@ -147,6 +147,29 @@ sensor:
     update_interval: 00:10:00
     monitored_conditions:
       - summary
+
+  - platform: filter
+    name: "Temperature"
+    entity_id: sensor.room_temperature
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 4.0
+      - filter: lowpass
+        time_constant: 10
+        precision: 2
+  - platform: filter
+    name: "Humidity"
+    entity_id: sensor.room_humidity
+    filters:
+      - filter: outlier
+        window_size: 4
+        radius: 2.0
+      - filter: lowpass
+        time_constant: 10
+      - filter: time_simple_moving_average
+        window_size: 00:05
+        precision: 2
 
   - platform: history_stats
     name: Watching TV today

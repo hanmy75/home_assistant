@@ -31,6 +31,12 @@ binary_sensor.dark:
   icon: mdi:weather-night
   device_class: light
 
+sensor.temperature:
+  device_class: temperature
+
+sensor.humidity:
+  device_class: humidity
+
 media_player.home_un55f7100:
   hidden: true
 

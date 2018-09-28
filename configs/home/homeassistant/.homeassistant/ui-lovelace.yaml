@@ -12,8 +12,8 @@ views:
       - type: entities
         title: Sensors
         entities:
-          - sensor.room_temperature
-          - sensor.room_humidity
+          - sensor.temperature
+          - sensor.humidity
           - binary_sensor.motion
           - sun.sun
           - binary_sensor.tv
