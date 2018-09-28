@@ -218,6 +218,14 @@ cloud:
       include_domains:
         - switch
 
+# For Google Home Assistant
+google_assistant:
+  project_id: home-auto-b4b9f
+  client_id: !secret google_home_client_id
+  access_token: !secret google_home_access_token
+  exposed_domains:
+    - switch
+
 # Flags for automation
 input_boolean:
   trigger_first_morning:
