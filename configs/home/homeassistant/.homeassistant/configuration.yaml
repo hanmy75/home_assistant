@@ -176,7 +176,7 @@ sensor:
     entity_id: binary_sensor.tv
     state: 'on'
     type: time
-    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    start: '{{ now().replace(hour=5).replace(minute=0).replace(second=0) }}'
     end: '{{ now() }}'
 
 # Device List
@@ -208,15 +208,6 @@ switch:
             entity_id: camera.room_camera
 
 cloud:
-  google_actions:
-    filter:
-      include_entities:
-      - switch.window
-      - switch.center
-      - switch.table
-      - switch.camera
-      include_domains:
-        - switch
 
 # For Google Home Assistant
 google_assistant:

@@ -344,7 +344,7 @@ class DarkSkySensor(Entity):
         self._state = self.get_summary()
 
     def get_summary(self):
-    	
+
     	daily = self.forecast_data.data_daily
     	hourly = self.forecast_data.data_hourly
     	currently = self.forecast_data.data_currently
@@ -353,7 +353,7 @@ class DarkSkySensor(Entity):
     	max_temp = getattr(daily.data[0], 'temperatureHigh', '')
     	summary = getattr(hourly, 'summary', '')
 
-    	output_string = "오늘은 낮 최고 %2.1f° 최저 %2.1f°이며 %s 으로 현재 온도는 %2.1f°입니다." % (max_temp, min_temp, summary, current_temp)
+    	output_string = "오늘은 낮 최고 %2.1f도 최저 %2.1f도이며 %s 으로 현재 온도는 %2.1f도 입니다." % (max_temp, min_temp, summary, current_temp)
     	return output_string
 
     def get_state(self, data):

@@ -32,10 +32,10 @@ binary_sensor.dark:
   device_class: light
 
 sensor.temperature:
-  device_class: temperature
+  icon: mdi:oil-temperature
 
 sensor.humidity:
-  device_class: humidity
+  icon: mdi:water-percent
 
 media_player.home_un55f7100:
   hidden: true
