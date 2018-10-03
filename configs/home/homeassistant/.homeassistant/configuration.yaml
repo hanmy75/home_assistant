@@ -103,7 +103,7 @@ weather:
 tts:
   - platform: google
     language: 'ko'
-    cache_dir: /tmp/tts
+    cache: false
 
 # Camera
 camera:
