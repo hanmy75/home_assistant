@@ -72,7 +72,7 @@ $ sudo make install
 $ cd ~
 $ git clone https://github.com/hanmy75/home_assistant.git
 $ sudo cp ~/home_assistant/configs/* / -rf
-$ sudo chown pi.pi dynu.sh turn_off.sh
+$ sudo chown pi.pi turn_off.sh cert_renew.sh
 $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 ```
 
@@ -87,6 +87,14 @@ $ sudo systemctl enable autologin@.service
 ### Get SSL Certificate
 ```
 $ sudo certbot certonly --standalone -d example.com
+```
+
+### Renew SSL Certificate
+```
+$ crontab -e
+------------------------------------------------------
+0 */12 * * * root /home/pi/cert_renew.sh
+------------------------------------------------------
 ```
 
 ### PIN Out

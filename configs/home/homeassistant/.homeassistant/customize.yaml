@@ -32,7 +32,7 @@ binary_sensor.dark:
   device_class: light
 
 sensor.temperature:
-  icon: mdi:oil-temperature
+  icon: mdi:thermometer
 
 sensor.humidity:
   icon: mdi:water-percent
