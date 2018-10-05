@@ -65,11 +65,7 @@ views:
         entities:
           - automation.light_onoff_by_flic_button
           - automation.light_on_by_motion
-          - automation.welcome_home_my
-          - automation.welcome_home_sangsuk
           - automation.first_morning_motion
-          - automation.my_goto_office
-          - automation.my_out_of_office
 
       - type: entities
         title: Flags

@@ -11,32 +11,6 @@
   - data:
       entity_id: group.living_room
     service: homeassistant.toggle
-- id: '1537021216556'
-  alias: Welcome Home MY
-  trigger:
-  - entity_id: device_tracker.google_maps_hanmy75gmailcom
-    from: not_home
-    platform: state
-    to: home
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.my_mini
-      message: 어서 오세요 문용님, 집에 오신걸 환영 합니다.
-    service: tts.google_say
-- id: '1537024134650'
-  alias: Welcome Home Sangsuk
-  trigger:
-  - entity_id: device_tracker.google_maps_115178832848292642971
-    from: not_home
-    platform: state
-    to: home
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.my_mini
-      message: 어서 오세요 상숙님, 집에 오신걸 환영 합니다.
-    service: tts.google_say
 - id: '1537967583786'
   alias: Light on by motion
   trigger:
@@ -123,29 +97,3 @@
   - data:
       entity_id: input_boolean.trigger_first_morning
     service: homeassistant.turn_off
-- id: '1538072025345'
-  alias: MY goto Office
-  trigger:
-  - entity_id: device_tracker.google_maps_hanmy75gmailcom
-    from: not_home
-    platform: state
-    to: office
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.my_mini
-      message: 문용님이 사무실에 도착했습니다.
-    service: tts.google_say
-- id: '1538072184385'
-  alias: MY out of Office
-  trigger:
-  - entity_id: device_tracker.google_maps_hanmy75gmailcom
-    from: office
-    platform: state
-    to: not_home
-  condition: []
-  action:
-  - data:
-      entity_id: media_player.my_mini
-      message: 문용님이 사무실에 도착했습니다.
-    service: tts.google_say
