@@ -37,8 +37,8 @@ sensor.temperature:
 sensor.humidity:
   icon: mdi:water-percent
 
-media_player.home_un55f7100:
-  hidden: true
+#media_player.home_un55f7100:
+#  hidden: true
 
 media_player.my_box:
   hidden: true

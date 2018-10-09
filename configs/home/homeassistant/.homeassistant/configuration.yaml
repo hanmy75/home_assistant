@@ -51,7 +51,6 @@ history:
   include:
     domains:
       - binary_sensor
-      - switch
       - camera
       - device_tracker
     entities:
@@ -116,10 +115,12 @@ camera:
 binary_sensor:
   - platform: flic
 
-  - platform: ping
-    host: 192.168.0.16
-    name: TV
-    scan_interval: 60
+  - platform: template
+    sensors:
+      tv:
+        friendly_name: "TV"
+        value_template: >-
+          {{ states.media_player.home_un55f7100.state == 'on' }}
 
   - platform: rpi_gpio
     ports:
@@ -176,8 +177,9 @@ sensor:
     entity_id: binary_sensor.tv
     state: 'on'
     type: time
-    start: '{{ now().replace(hour=5).replace(minute=0).replace(second=0) }}'
-    end: '{{ now() }}'
+    end: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    duration:
+      hours: 24
 
 # Device List
 switch:
