@@ -27,7 +27,7 @@ config:
 
 http:
   # Secrets are defined in the file secrets.yaml
-  # api_password: !secret http_password
+  api_password: !secret http_password
   # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
   # base_url: example.duckdns.org:8123
 
@@ -174,12 +174,11 @@ sensor:
 
   - platform: history_stats
     name: Watching TV today
-    entity_id: binary_sensor.tv
+    entity_id: media_player.home_un55f7100
     state: 'on'
     type: time
-    end: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
-    duration:
-      hours: 24
+    start: '{{ now().replace(hour=0).replace(minute=0).replace(second=0) }}'
+    end: '{{ now() }}'
 
 # Device List
 switch:
