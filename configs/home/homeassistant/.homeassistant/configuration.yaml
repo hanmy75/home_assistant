@@ -208,23 +208,6 @@ switch:
           data:
             entity_id: camera.room_camera
 
-      tv_flag:
-        value_template: "{{ is_state('input_boolean.dummy_flag', 'on') }}"
-        turn_on:
-          service: media_player.media_play
-          data:
-            entity_id: media_player.home_un55f7100
-          service: homeassistant.turn_on
-          data:
-            entity_id: input_boolean.dummy_flag
-        turn_off:
-          service: media_player.media_pause
-          data:
-            entity_id: media_player.home_un55f7100
-          service: homeassistant.turn_off
-          data:
-            entity_id: input_boolean.dummy_flag
-
 cloud:
 
 # For Google Home Assistant
@@ -234,6 +217,7 @@ google_assistant:
   access_token: !secret google_home_access_token
   exposed_domains:
     - switch
+    - script
 
 # Flags for automation
 input_boolean:
@@ -242,9 +226,6 @@ input_boolean:
 
   debounce_flag:
     name: Debounce for motion
-
-  dummy_flag:
-    name: Dummy flag for TV control
 
 timer:
   debounce:
