@@ -142,13 +142,6 @@ sensor:
       - temperature
       - humidity
 
-  - platform: my_darksky
-    api_key: !secret darksky_api_key
-    units: auto
-    update_interval: 00:10:00
-    monitored_conditions:
-      - summary
-
   - platform: filter
     name: "Temperature"
     entity_id: sensor.room_temperature

@@ -129,6 +129,18 @@ class DarkSkyWeather(WeatherEntity):
         return MAP_CONDITION.get(self._ds_currently.get('icon'))
 
     @property
+    def visibility(self):
+        """Return the visibility."""
+
+        current_temp = float(self._ds_currently.get('temperature'))
+        min_temp = float(getattr(self._ds_daily.data[0], 'temperatureLow', ''))
+        max_temp = float(getattr(self._ds_daily.data[0], 'temperatureHigh', ''))
+        summary = getattr(self._ds_hourly, 'summary', '')
+
+        output_string = "오늘은 낮 최고 %2.1f도 최저 %2.1f도이며 %s 으로 현재 온도는 %2.1f도 입니다." % (max_temp, min_temp, summary, current_temp)
+        return output_string
+
+    @property
     def forecast(self):
         """Return the forecast array."""
         return [{
@@ -175,7 +187,7 @@ class DarkSkyData:
         try:
             self.data = forecastio.load_forecast(
                 self._api_key, self.latitude, self.longitude,
-                units=self.requested_units)
+                units=self.requested_units, lang='ko')
             self.currently = self.data.currently()
             self.hourly = self.data.hourly()
             self.daily = self.data.daily()

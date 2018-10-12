@@ -93,7 +93,7 @@
   action:
   - data_template:
       entity_id: media_player.my_mini
-      message: 좋은 아침이에요. {{states.sensor.dark_sky_summary.state}}'
+      message: 좋은 아침이에요. {{states.weather.weather.attributes.visibility}}'
     service_template: tts.google_say
   - data:
       entity_id: input_boolean.trigger_first_morning
