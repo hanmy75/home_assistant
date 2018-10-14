@@ -132,27 +132,12 @@ class DarkSkyWeather(WeatherEntity):
     def visibility(self):
         """Return the visibility."""
 
-        current_temp = round(float(self._ds_currently.get('temperature')), 1)
-        min_temp = round(float(getattr(self._ds_daily.data[0], 'temperatureLow', '')), 1)
-        max_temp = round(float(getattr(self._ds_daily.data[0], 'temperatureHigh', '')), 1)
+        current_temp = round(self._ds_currently.get('temperature'))
+        min_temp = round(getattr(self._ds_daily.data[0], 'temperatureLow', ''))
+        max_temp = round(getattr(self._ds_daily.data[0], 'temperatureHigh', ''))
         summary = getattr(self._ds_hourly, 'summary', '')
 
-        if int(current_temp*10) == int(current_temp)*10:
-            current_temp_str = "{:d}".format(int(current_temp))
-        else:
-            current_temp_str = "{:2.1f}".format(current_temp)
-
-        if int(min_temp*10) == int(min_temp)*10:
-            min_temp_str = "{:d}".format(int(min_temp))
-        else:
-            min_temp_str = "{:2.1f}".format(min_temp)
-
-        if int(max_temp*10) == int(max_temp)*10:
-            max_temp_str = "{:d}".format(int(max_temp))
-        else:
-            max_temp_str = "{:2.1f}".format(max_temp)
-
-        output_string = "오늘은 낮 최고 %s도 최저 %s도이며 %s 으로 현재 온도는 %s도 입니다." % (max_temp_str, min_temp_str, summary, current_temp_str)
+        output_string = "오늘은 낮 최고 %d도 최저 %d도이며 %s 으로 현재 온도는 %d도 입니다." % (max_temp, min_temp, summary, current_temp)
         return output_string
 
     @property
