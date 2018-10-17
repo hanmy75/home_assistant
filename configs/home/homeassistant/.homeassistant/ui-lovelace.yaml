@@ -36,7 +36,7 @@ views:
 
   - title: Location
     cards:
-      - type: entities
+      - type: glance
         title: Family
         entities:
          - device_tracker.google_maps_hanmy75gmailcom

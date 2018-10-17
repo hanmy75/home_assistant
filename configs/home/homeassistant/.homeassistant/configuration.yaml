@@ -175,9 +175,9 @@ sensor:
 
 # Device List
 switch:
-  - platform: rpi_rf
+  - platform: my_rpi_rf
     gpio: 18
-    signal_repetitions: 2
+    #signal_repetitions: 4
     switches:
       Window:
         code_on:  0x00EA083F

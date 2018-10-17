@@ -115,7 +115,7 @@ class RPiRFSwitch(SwitchDevice):
             _LOGGER.info("Sending code(s): %s", code_list)
             for code in code_list:
                 self._rfdevice.tx_code(code, protocol, pulselength)
-        time.sleep(0.3)
+        time.sleep(0.5)
         return True
 
     def turn_on(self, **kwargs):
