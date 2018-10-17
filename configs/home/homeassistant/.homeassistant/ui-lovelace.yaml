@@ -1,3 +1,7 @@
+resources:
+  - url: /local/gauge-card.js?v=1
+    type: js
+
 title: MY's Home Assistant
 views:
   - title: Home
@@ -9,7 +13,7 @@ views:
           - switch.center
           - switch.table
 
-      - type: entities
+      - type: glance
         title: Sensors
         entities:
           - sensor.temperature
@@ -17,7 +21,15 @@ views:
           - binary_sensor.motion
           - sun.sun
           - binary_sensor.tv
-          - sensor.watching_tv_today
+
+      - type: custom:gauge-card
+        entity: sensor.watching_tv_today
+        title: Watching TV
+        max: 10
+        severity:
+          green: 0
+          yellow: 3
+          red: 6
 
       - type: weather-forecast
         entity: weather.weather
@@ -40,14 +52,11 @@ views:
 
   - title: Camera
     cards:
-      - type: picture-entity
-        entity: camera.room_camera
-
-      - type: entities
-        title:
-        show_header_toggle: false
+      - type: picture-glance
+        title: Room Camera
+        camera_image: camera.room_camera
         entities:
-          - switch.camera
+        - switch.camera
 
   - title: Media
     cards:
