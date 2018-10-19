@@ -82,10 +82,10 @@ zone:
     icon: mdi:school
 
 # Tracker
-device_tracker:
-  - platform: google_maps
-    username: !secret google_id
-    password: !secret google_pw
+#device_tracker:
+#  - platform: my_google_maps
+#    username: !secret google_id
+#    password: !secret google_pw
 
 # Track the sun
 sun:
@@ -96,6 +96,7 @@ weather:
     name: Weather
     api_key: !secret darksky_api_key
     units: auto
+    mode: daily
 
 
 # Text to speech
@@ -110,6 +111,12 @@ camera:
     name: Room Camera
     mjpeg_url: http://localhost:8080/?action=stream
     off_image_url: http://localhost:8123/local/off_image.jpg
+
+# Media Player
+media_player:
+  - platform: samsungtv
+    host: 192.168.0.16
+    name: home_un55f7100
 
 # Binary Sensor
 binary_sensor:
@@ -152,6 +159,7 @@ sensor:
       - filter: lowpass
         time_constant: 10
         precision: 2
+
   - platform: filter
     name: "Humidity"
     entity_id: sensor.room_humidity
@@ -206,9 +214,7 @@ cloud:
 
 # For Google Home Assistant
 google_assistant:
-  project_id: home-auto-b4b9f
-  client_id: !secret google_home_client_id
-  access_token: !secret google_home_access_token
+  project_id: my-s-home-control-ffd58
   exposed_domains:
     - switch
     - script
