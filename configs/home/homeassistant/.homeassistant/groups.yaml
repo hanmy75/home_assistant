@@ -3,6 +3,7 @@ Living Room:
     - switch.window
     - switch.center
     - switch.table
+    - switch.kitchen
 
 Sensors:
   entities:

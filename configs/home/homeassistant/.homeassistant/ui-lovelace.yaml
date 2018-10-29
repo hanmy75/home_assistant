@@ -8,6 +8,7 @@ views:
           - switch.window
           - switch.center
           - switch.table
+          - switch.kitchen
 
       - type: glance
         title: Sensors
@@ -61,7 +62,8 @@ views:
       - type: entities
         title: Automation
         entities:
-          - automation.light_onoff_by_flic_button
+          - automation.light_on_by_flic_button
+          - automation.light_off_by_flic_button
           - automation.light_on_by_motion
           - automation.first_morning_motion
           - automation.light_off_at_night

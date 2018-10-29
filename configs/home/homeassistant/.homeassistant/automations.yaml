@@ -1,16 +1,37 @@
 - id: '1536174384148'
-  alias: Light On/Off by flic button
+  alias: Light On by flic button
   trigger:
   - event_data:
       button_name: flic_80e4da727be8
       click_type: single
     event_type: flic_click
     platform: event
-  condition: []
+  condition:
+  - condition: state
+    entity_id: group.living_room
+    state: 'off'
   action:
   - data:
       entity_id: group.living_room
-    service: homeassistant.toggle
+    service: switch.turn_on
+
+- id: '1536174384149'
+  alias: Light Off by flic button
+  trigger:
+  - event_data:
+      button_name: flic_80e4da727be8
+      click_type: single
+    event_type: flic_click
+    platform: event
+  condition:
+  - condition: state
+    entity_id: group.living_room
+    state: 'on'
+  action:
+  - data:
+      entity_id: group.living_room
+    service: switch.turn_off
+
 - id: '1537967583786'
   alias: Light on by motion
   trigger:

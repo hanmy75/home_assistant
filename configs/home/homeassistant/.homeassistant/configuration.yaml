@@ -183,19 +183,16 @@ sensor:
 
 # Device List
 switch:
-  - platform: my_rpi_rf
-    gpio: 18
-    #signal_repetitions: 4
+  - platform: my_sonoff
     switches:
-      Window:
-        code_on:  0x00EA083F
-        code_off: 0x00EA083E
-      Center:
-        code_on:  0x00EB083C
-        code_off: 0x00EB083D
-      Table:
-        code_on:  0x00EC083C
-        code_off: 0x00EC083B
+      window:
+        ip_address: 192.168.2.12
+      center:
+        ip_address: 192.168.2.13
+      table:
+        ip_address: 192.168.2.10
+      kitchen:
+        ip_address: 192.168.2.11
 
   - platform: template
     switches:
