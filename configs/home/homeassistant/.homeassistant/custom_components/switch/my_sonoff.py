@@ -97,7 +97,7 @@ class SonoffSwitch(SwitchDevice):
 
     def turn_on(self, **kwargs):
         """Turn the switch on."""
-        data = self._send_code(self._base_url + POWER_OFF_CMD)
+        data = self._send_code(self._base_url + POWER_ON_CMD)
         self._state = True
         self.schedule_update_ha_state()
 
