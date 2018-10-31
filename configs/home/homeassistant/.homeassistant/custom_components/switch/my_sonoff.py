@@ -78,10 +78,10 @@ class SonoffSwitch(SwitchDevice):
             resp = requests.get(url, timeout=RESP_TIMEOUT)
             resp.raise_for_status()
         except requests.exceptions.ConnectionError as errc:
-            _LOGGER.error("Connection Error %s", errc)
+            _LOGGER.info("Connection Error %s", errc)
             return None
         except requests.exceptions.Timeout as errt:
-            _LOGGER.error("Connection Timeout %s", errt)
+            _LOGGER.info("Connection Timeout %s", errt)
             return None
 
         data = json.loads(resp.text)
