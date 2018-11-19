@@ -12,7 +12,7 @@ from homeassistant.const import (
     CONF_SWITCHES, CONF_NAME, CONF_IP_ADDRESS)
 import homeassistant.helpers.config_validation as cv
 
-RESP_TIMEOUT = 1
+RESP_TIMEOUT = 1.5
 POWER_ON_CMD = '/cm?cmnd=Power%20On'
 POWER_OFF_CMD = '/cm?cmnd=Power%20Off'
 GET_STATUS_CMD = '/cm?cmnd=Status'

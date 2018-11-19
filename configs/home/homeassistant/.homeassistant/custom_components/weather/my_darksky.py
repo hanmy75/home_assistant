@@ -142,12 +142,26 @@ class DarkSkyWeather(WeatherEntity):
     @property
     def visibility(self):
         """Return the visibility."""
+        current_pola_str = ""
+        min_pola_str = ""
+        max_pola_str = ""
+
         current_temp = round(self._ds_currently.get('temperature'))
         min_temp = round(getattr(self._ds_daily.data[0], 'temperatureLow', ''))
         max_temp = round(getattr(self._ds_daily.data[0], 'temperatureHigh', ''))
         summary = getattr(self._ds_hourly, 'summary', '')
 
-        output_string = "오늘은 낮 최고 %d도 최저 %d도이며 %s 으로 현재 온도는 %d도 입니다." % (max_temp, min_temp, summary, current_temp)
+        if current_temp < 0:
+            current_temp = -current_temp
+            current_pola_str = "영하"
+        if min_temp < 0:
+            min_temp = -min_temp
+            min_pola_str = "영하"
+        if max_temp < 0:
+            max_temp = -max_temp
+            max_pola_str = "영하"
+
+        output_string = "오늘은 낮 최고 %s %d도 최저 %s %d도이며 %s 으로 현재 온도는 %s %d도 입니다." % (max_pola_str, max_temp, min_pola_str, min_temp, summary, current_pola_str, current_temp)
         return output_string
 
     @property

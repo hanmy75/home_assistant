@@ -14,7 +14,6 @@
   - data:
       entity_id: group.living_room
     service: switch.turn_on
-
 - id: '1536174384149'
   alias: Light Off by flic button
   trigger:
@@ -31,7 +30,6 @@
   - data:
       entity_id: group.living_room
     service: switch.turn_off
-
 - id: '1537967583786'
   alias: Light on by motion
   trigger:
@@ -46,9 +44,9 @@
   - condition: state
     entity_id: group.living_room
     state: 'off'
-  - condition: state
-    entity_id: sun.sun
-    state: below_horizon
+  - after: '17:00:00'
+    before: '8:00:00'
+    condition: time
   action:
   - data:
       entity_id: group.living_room
