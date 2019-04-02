@@ -1,6 +1,6 @@
 [Unit]
 Description=flic daemon
-After=network-online.target
+After=rc-local.service
 
 [Service]
 Type=simple
