@@ -1,0 +1,11 @@
+[Unit]
+Description=flic daemon
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/home/pi/flicd -f /home/pi/flic.sqlite3
+
+[Install]
+WantedBy=multi-user.target

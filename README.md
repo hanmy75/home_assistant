@@ -12,8 +12,8 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip git dnsmasq nginx certbot cmake libjpeg8-dev
-$ sudo pip3 install requests
+$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq nginx certbot cmake libjpeg8-dev
+$ sudo pip2 install esphomeyaml
 ```
 
 - Add an account for Home Assistant and create a directory
@@ -81,6 +81,8 @@ $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 ```
 $ sudo systemctl enable home-assistant@homeassistant
 $ sudo systemctl start home-assistant@homeassistant
+$ sudo systemctl enable flicd
+$ sudo systemctl start flicd
 $ sudo systemctl enable autologin@.service
 ```
 
