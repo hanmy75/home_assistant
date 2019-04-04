@@ -46,6 +46,11 @@ updater:
 # Discover some devices automatically
 discovery:
 
+mqtt:
+
+system_health:
+
+
 # Allows you to issue voice commands from the frontend in enabled browsers
 conversation:
 
@@ -187,16 +192,16 @@ sensor:
 
 # Device List
 switch:
-  - platform: my_sonoff
-    switches:
-      window:
-        ip_address: 192.168.2.12
-      center:
-        ip_address: 192.168.2.13
-      table:
-        ip_address: 192.168.2.10
-      kitchen:
-        ip_address: 192.168.2.11
+#  - platform: my_sonoff
+#    switches:
+#      window:
+#        ip_address: 192.168.2.12
+#      center:
+#        ip_address: 192.168.2.13
+#      table:
+#        ip_address: 192.168.2.10
+#      kitchen:
+#        ip_address: 192.168.2.11
 
   - platform: template
     switches:
