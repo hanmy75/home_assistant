@@ -5,10 +5,10 @@ views:
       - type: entities
         title: Living Room
         entities:
-          - switch.window
-          - switch.center
-          - switch.table
-          - switch.kitchen
+          - light.window
+          - light.center
+          - light.table
+          - light.kitchen
 
       - type: glance
         title: Sensors

@@ -1,2 +1,2 @@
 #! /bin/bash
-esphomeyaml config/ dashboard
+esphome config/ dashboard

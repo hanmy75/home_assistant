@@ -188,17 +188,6 @@ sensor:
 
 # Device List
 switch:
-#  - platform: my_sonoff
-#    switches:
-#      window:
-#        ip_address: 192.168.2.12
-#      center:
-#        ip_address: 192.168.2.13
-#      table:
-#        ip_address: 192.168.2.10
-#      kitchen:
-#        ip_address: 192.168.2.11
-
   - platform: template
     switches:
       camera:

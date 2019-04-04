@@ -1,22 +1,6 @@
 #sun.sun:
 #  hidden: true
 
-switch.window:
-  icon: mdi:lightbulb
-  device_class: light
-
-switch.center:
-  icon: mdi:lightbulb
-  device_class: light
-
-switch.table:
-  icon: mdi:lightbulb
-  device_class: light
-
-switch.kitchen:
-  icon: mdi:lightbulb
-  device_class: light
-
 switch.camera:
   icon: mdi:camcorder
 
