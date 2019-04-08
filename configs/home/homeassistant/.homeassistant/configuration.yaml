@@ -29,6 +29,9 @@ lovelace:
   mode: yaml
 
 http:
+  ssl_certificate: !secret certificate
+  ssl_key: !secret private_key
+  base_url: !secret https_url
 
 # Checks for available updates
 # Note: This component will send some information about your system to

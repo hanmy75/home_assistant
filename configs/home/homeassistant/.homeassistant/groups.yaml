@@ -1,9 +1,9 @@
 Living Room:
   entities:
-    - light.window
-    - light.center
-    - light.table
-    - light.kitchen
+    - switch.window
+    - switch.center
+    - switch.table
+    - switch.kitchen
 
 Sensors:
   entities:

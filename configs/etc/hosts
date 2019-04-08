@@ -6,3 +6,8 @@ ff02::2		ip6-allrouters
 127.0.1.1	KODI
 
 192.168.2.2	hanmy75.duckdns.org hmy75.ipdisk.co.kr
+
+192.168.2.10	table.local
+192.168.2.11	kitchen.local
+192.168.2.12    window.local
+192.168.2.13    center.local
