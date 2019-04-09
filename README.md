@@ -12,7 +12,7 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq nginx certbot cmake libjpeg8-dev
+$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq certbot cmake libjpeg8-dev
 $ sudo pip2 install esphomeyaml
 ```
 
@@ -89,6 +89,8 @@ $ sudo systemctl enable autologin@.service
 ### Get SSL Certificate
 ```
 $ sudo certbot certonly --standalone -d example.com
+$ sudo chmod 755 /etc/letsencrypt/live/
+$ sudo chmod 755 /etc/letsencrypt/archive/
 ```
 
 ### Renew SSL Certificate
