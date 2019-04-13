@@ -44,7 +44,7 @@ views:
     cards:
       - type: picture-glance
         title: Room Camera
-        camera_image: camera.room_camera
+        camera_image: camera.room
         entities:
         - switch.camera
 

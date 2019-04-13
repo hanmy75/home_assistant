@@ -45,8 +45,6 @@ updater:
 # Discover some devices automatically
 discovery:
 
-mqtt:
-
 system_health:
 
 
@@ -111,13 +109,6 @@ tts:
   - platform: google
     language: 'ko'
     cache: false
-
-# Camera
-camera:
-  - platform: my_mjpeg
-    name: Room Camera
-    mjpeg_url: http://localhost:8080/?action=stream
-    off_image_url: http://localhost:8123/local/off_image.jpg
 
 # Media Player
 media_player:
@@ -198,11 +189,11 @@ switch:
         turn_on:
           service: camera.turn_on
           data:
-            entity_id: camera.room_camera
+            entity_id: camera.room
         turn_off:
           service: camera.turn_off
           data:
-            entity_id: camera.room_camera
+            entity_id: camera.room
 
 cloud:
 
