@@ -46,7 +46,7 @@ views:
         title: Room Camera
         camera_image: camera.room
         entities:
-        - switch.camera
+        - switch.cam_restart
 
   - title: Media
     cards:

@@ -12,7 +12,7 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq certbot cmake libjpeg8-dev
+$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq certbot libssl-dev libffi-dev
 $ sudo pip2 install esphomeyaml
 ```
 
@@ -55,16 +55,6 @@ $ pip3 install --upgrade homeassistant
 ```
 
 Reference : https://www.home-assistant.io/docs/installation/raspberry-pi
-
-
-### Install Mjpeg Streamer
-```
-$ cd ~
-$ git clone https://github.com/jacksonliam/mjpg-streamer.git
-$ cd ~/mjpg-streamer/mjpg-streamer-experimental
-$ make
-$ sudo make install
-```
 
 
 ### Install configuration and script
