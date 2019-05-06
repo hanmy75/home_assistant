@@ -17,7 +17,7 @@ homeassistant:
     - /tmp
 
 # Show links to resources in log and frontend
-introduction:
+#introduction:
 
 # Enables the frontend
 frontend:
@@ -85,12 +85,6 @@ zone:
     latitude:  !secret zone_school_lati
     longitude: !secret zone_school_long
     icon: mdi:school
-
-# Tracker
-#device_tracker:
-#  - platform: my_google_maps
-#    username: !secret google_id
-#    password: !secret google_pw
 
 # Track the sun
 sun:
