@@ -165,6 +165,9 @@ google_assistant:
     - switch
     - script
     - camera
+  entity_config:
+    switch.cam_restart:
+      expose: false
 
 # Flags for automation
 input_boolean:
