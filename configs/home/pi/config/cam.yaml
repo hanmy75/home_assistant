@@ -1,0 +1,57 @@
+esphome:
+  name: cam
+  platform: ESP32
+  board: esp32dev
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_pw
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_api_pw
+
+ota:
+  password: !secret esp_api_pw
+
+switch:
+  - platform: restart
+    name: "CAM Restart"
+
+sensor:
+  - platform: dht
+    pin: GPIO2
+    model: AM2302
+    temperature:
+      name: "room_temperature"
+    humidity:
+      name: "room_humidity"
+    update_interval: 30s
+
+binary_sensor:
+  - platform: gpio
+    name: "motion"
+    pin:
+      number: GPIO14
+      mode: INPUT_PULLDOWN
+
+esp32_camera:
+  external_clock:
+    pin: GPIO0
+    frequency: 20MHz
+  i2c_pins:
+    sda: GPIO26
+    scl: GPIO27
+  data_pins: [GPIO5, GPIO18, GPIO19, GPIO21, GPIO36, GPIO39, GPIO34, GPIO35]
+  vsync_pin: GPIO25
+  href_pin: GPIO23
+  pixel_clock_pin: GPIO22
+  power_down_pin: GPIO32
+
+  # Image settings
+  name: CAM
+  resolution: 640x480
+  jpeg_quality: 10
