@@ -1,0 +1,40 @@
+esphome:
+  name: kitchen_sensor
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_pw
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_api_pw
+
+ota:
+  password: !secret esp_api_pw
+
+switch:
+  - platform: gpio
+    name: "relay"
+    icon: "mdi:lightbulb"
+    pin: GPIO2
+    restore_mode: ALWAYS_ON
+
+sensor:
+  - platform: adc
+    pin: VCC
+    name: "Battery"
+    icon: "mdi:battery-charging"
+    filters:
+      - lambda: return x * 33;
+    accuracy_decimals: true
+    unit_of_measurement: "%"
+
+binary_sensor:
+  - platform: gpio
+    name: "motion"
+    pin: GPIO0
