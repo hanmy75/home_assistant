@@ -8,16 +8,24 @@ views:
           - switch.window
           - switch.center
           - switch.table
-          - switch.kitchen
 
       - type: glance
-        title: Sensors
+        title: Living Room Sensors
         entities:
           - sensor.temperature
           - sensor.humidity
           - binary_sensor.motion
           - sun.sun
           - binary_sensor.tv
+
+      - type: glance
+        title: Kitchen
+        entities:
+          - entity: switch.kitchen
+            tap_action:
+              action: toggle
+          - binary_sensor.kitchen_motion
+          - sensor.kitchen_battery
 
       - type: gauge
         entity: sensor.watching_tv_today
@@ -30,15 +38,6 @@ views:
 
       - type: weather-forecast
         entity: weather.weather
-
-#  - title: Location
-#    cards:
-#      - type: glance
-#        title: Family
-#        entities:
-#         - device_tracker.google_maps_hanmy75gmailcom
-#         - device_tracker.google_maps_115178832848292642971
-#         - device_tracker.google_maps_101237996651145287128
 
   - title: Camera
     cards:

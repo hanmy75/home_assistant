@@ -15,6 +15,9 @@ binary_sensor.flic_80e4da727be8:
 binary_sensor.motion:
   device_class: motion
 
+binary_sensor.kitchen_motion:
+  device_class: motion
+
 binary_sensor.dark:
   icon: mdi:weather-night
   device_class: light

@@ -3,7 +3,6 @@ Living Room:
     - switch.window
     - switch.center
     - switch.table
-    - switch.kitchen
 
 Sensors:
   entities:
@@ -12,9 +11,3 @@ Sensors:
     - binary_sensor.motion
     - sun.sun
     - binary_sensor.tv
-
-Family:
-  entities:
-    - device_tracker.google_maps_hanmy75gmailcom
-    - device_tracker.google_maps_115178832848292642971
-    - device_tracker.google_maps_101237996651145287128
