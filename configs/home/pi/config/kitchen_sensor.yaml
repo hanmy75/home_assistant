@@ -6,6 +6,7 @@ esphome:
 wifi:
   ssid: !secret wifi_ssid
   password: !secret wifi_pw
+  fast_connect: on
 
 # Enable logging
 logger:
@@ -17,13 +18,6 @@ api:
 ota:
   password: !secret esp_api_pw
 
-switch:
-  - platform: gpio
-    name: "relay"
-    icon: "mdi:lightbulb"
-    pin: GPIO2
-    restore_mode: ALWAYS_ON
-
 sensor:
   - platform: adc
     pin: VCC
@@ -33,8 +27,11 @@ sensor:
       - lambda: return x * 33;
     accuracy_decimals: true
     unit_of_measurement: "%"
+    update_interval: 600s
 
 binary_sensor:
   - platform: gpio
     name: "motion"
-    pin: GPIO0
+    pin:
+      number: GPIO2
+      mode: INPUT

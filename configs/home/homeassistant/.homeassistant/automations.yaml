@@ -30,6 +30,9 @@
   - data:
       entity_id: group.living_room
     service: switch.turn_off
+  - data:
+      entity_id: switch.kitchen
+    service: switch.turn_off
 - id: '1537967583786'
   alias: Light on by motion
   trigger:
@@ -132,3 +135,38 @@
   - data:
       entity_id: group.living_room
     service: homeassistant.turn_off
+- id: '1558130270763'
+  alias: Light on kitchen
+  trigger:
+  - entity_id: binary_sensor.kitchen_motion
+    from: 'off'
+    platform: state
+    to: 'on'
+  condition:
+  - condition: state
+    entity_id: switch.kitchen
+    state: 'off'
+  - condition: or
+    conditions:
+    - condition: sun
+      before: sunrise
+      before_offset: '+1:00:00'
+    - condition: sun
+      after: sunset
+      after_offset: '-2:00:00'
+  action:
+  - data:
+      entity_id: switch.kitchen
+    service: switch.turn_on
+- id: '1558131434527'
+  alias: Light off kitchen
+  trigger:
+    platform: state
+    entity_id: binary_sensor.kitchen_motion
+    to: 'off'
+    for:
+      minutes: 10
+  action:
+  - data:
+      entity_id: switch.kitchen
+    service: switch.turn_off

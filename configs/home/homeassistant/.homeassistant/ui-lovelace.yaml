@@ -10,15 +10,6 @@ views:
           - switch.table
 
       - type: glance
-        title: Living Room Sensors
-        entities:
-          - sensor.temperature
-          - sensor.humidity
-          - binary_sensor.motion
-          - sun.sun
-          - binary_sensor.tv
-
-      - type: glance
         title: Kitchen
         entities:
           - entity: switch.kitchen
@@ -26,6 +17,15 @@ views:
               action: toggle
           - binary_sensor.kitchen_motion
           - sensor.kitchen_battery
+
+      - type: glance
+        title: Living Room Sensors
+        entities:
+          - sensor.temperature
+          - sensor.humidity
+          - binary_sensor.motion
+          - sun.sun
+          - binary_sensor.tv
 
       - type: gauge
         entity: sensor.watching_tv_today
@@ -66,6 +66,8 @@ views:
           - automation.light_on_by_motion
           - automation.first_morning_motion
           - automation.light_off_at_night
+          - automation.light_on_kitchen
+          - automation.light_off_kitchen
 
       - type: entities
         title: Flags
