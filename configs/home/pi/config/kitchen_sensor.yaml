@@ -18,20 +18,10 @@ api:
 ota:
   password: !secret esp_api_pw
 
-sensor:
-  - platform: adc
-    pin: VCC
-    name: "Battery"
-    icon: "mdi:battery-charging"
-    filters:
-      - lambda: return x * 33;
-    accuracy_decimals: true
-    unit_of_measurement: "%"
-    update_interval: 600s
-
 binary_sensor:
   - platform: gpio
     name: "motion"
     pin:
-      number: GPIO2
+      number: GPIO05
       mode: INPUT
+

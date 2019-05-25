@@ -2,29 +2,29 @@ title: MY's Home Assistant
 views:
   - title: Home
     cards:
-      - type: entities
-        title: Living Room
-        entities:
-          - switch.window
-          - switch.center
-          - switch.table
-
       - type: glance
-        title: Kitchen
+        title: Lights
         entities:
+          - entity: switch.window
+            tap_action:
+              action: toggle
+          - entity: switch.center
+            tap_action:
+              action: toggle
+          - entity: switch.table
+            tap_action:
+              action: toggle
           - entity: switch.kitchen
             tap_action:
               action: toggle
-          - binary_sensor.kitchen_motion
-          - sensor.kitchen_battery
 
       - type: glance
-        title: Living Room Sensors
+        title: Sensors
         entities:
           - sensor.temperature
           - sensor.humidity
           - binary_sensor.motion
-          - sun.sun
+          - binary_sensor.kitchen_motion
           - binary_sensor.tv
 
       - type: gauge

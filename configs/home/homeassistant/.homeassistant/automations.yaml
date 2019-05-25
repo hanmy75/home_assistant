@@ -146,14 +146,6 @@
   - condition: state
     entity_id: switch.kitchen
     state: 'off'
-  - condition: or
-    conditions:
-    - condition: sun
-      before: sunrise
-      before_offset: '+1:00:00'
-    - condition: sun
-      after: sunset
-      after_offset: '-2:00:00'
   action:
   - data:
       entity_id: switch.kitchen
@@ -165,7 +157,7 @@
     entity_id: binary_sensor.kitchen_motion
     to: 'off'
     for:
-      minutes: 10
+      minutes: 5
   action:
   - data:
       entity_id: switch.kitchen
