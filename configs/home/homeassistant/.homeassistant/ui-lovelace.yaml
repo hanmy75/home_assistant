@@ -21,11 +21,12 @@ views:
       - type: glance
         title: Sensors
         entities:
-          - sensor.temperature
-          - sensor.humidity
+          - sensor.ondo
+          - sensor.seubdo
           - binary_sensor.motion
           - binary_sensor.kitchen_motion
           - binary_sensor.tv
+          - sensor.injeungseo
 
       - type: gauge
         entity: sensor.watching_tv_today
@@ -35,9 +36,6 @@ views:
           green: 0
           yellow: 3
           red: 6
-
-      - type: weather-forecast
-        entity: weather.weather
 
   - title: Camera
     cards:
