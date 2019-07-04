@@ -12,3 +12,4 @@ ff02::2		ip6-allrouters
 192.168.2.12    window.local
 192.168.2.13    center.local
 192.168.2.14	cam.local
+192.168.2.15	sensor.local
