@@ -19,7 +19,7 @@ ota:
 
 switch:
   - platform: gpio
-    name: "relay"
+    name: "center"
     icon: "mdi:lightbulb"
     pin: GPIO12
     restore_mode: ALWAYS_ON
