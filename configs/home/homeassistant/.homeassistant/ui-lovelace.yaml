@@ -23,8 +23,12 @@ views:
         entities:
           - sensor.ondo
           - sensor.seubdo
+          - sensor.balggi
+
+      - type: glance
+        title: Etc
+        entities:
           - binary_sensor.motion
-          - binary_sensor.kitchen_motion
           - binary_sensor.tv
           - sensor.injeungseo
 
@@ -36,14 +40,6 @@ views:
           green: 0
           yellow: 3
           red: 6
-
-  - title: Camera
-    cards:
-      - type: picture-glance
-        title: Room Camera
-        camera_image: camera.room
-        entities:
-        - switch.cam_restart
 
   - title: Media
     cards:
@@ -64,8 +60,6 @@ views:
           - automation.light_on_by_motion
           - automation.first_morning_motion
           - automation.light_off_at_night
-          - automation.light_on_kitchen
-          - automation.light_off_kitchen
 
       - type: entities
         title: Flags
