@@ -47,14 +47,10 @@
   - condition: state
     entity_id: group.living_room
     state: 'off'
-  - condition: or
-    conditions:
-    - condition: sun
-      before: sunrise
-      before_offset: '+1:00:00'
-    - condition: sun
-      after: sunset
-      after_offset: '-1:00:00'
+  - above: '0'
+    below: '40'
+    condition: numeric_state
+    entity_id: sensor.balggi
   action:
   - data:
       entity_id: group.living_room

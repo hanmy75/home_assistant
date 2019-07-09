@@ -29,9 +29,9 @@ lovelace:
   mode: yaml
 
 http:
-  ssl_certificate: !secret certificate
-  ssl_key: !secret private_key
-  base_url: !secret https_url
+  #ssl_certificate: !secret certificate
+  #ssl_key: !secret private_key
+  #base_url: !secret https_url
 
 # Checks for available updates
 # Note: This component will send some information about your system to
@@ -65,7 +65,7 @@ history:
 logbook:
 
 # Enables a map showing the location of tracked devices
-map:
+#map:
 
 # DDNS
 duckdns:
@@ -117,8 +117,11 @@ sensor:
     name: "밝기"
     entity_id: sensor.brightness
     filters:
+#      - filter: outlier
+#        window_size: 4
+#        radius: 4.0
       - filter: lowpass
-        time_constant: 4
+        time_constant: 10
         precision: 2
       - filter: range
         lower_bound: 10
@@ -143,9 +146,6 @@ sensor:
         radius: 2.0
       - filter: lowpass
         time_constant: 10
-      - filter: time_simple_moving_average
-        window_size: 00:05
-        precision: 2
 
   - platform: history_stats
     name: Watching TV today
