@@ -4,8 +4,12 @@ esphome:
   board: esp01_1m
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_pw
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_pw
+  - ssid: !secret wifi_ssid2
+    password: !secret wifi_pw
+  reboot_timeout: 0s
 
 # Enable logging
 logger:
@@ -13,6 +17,7 @@ logger:
 # Enable Home Assistant API
 api:
   password: !secret esp_api_pw
+  reboot_timeout: 0s
 
 ota:
   password: !secret esp_api_pw

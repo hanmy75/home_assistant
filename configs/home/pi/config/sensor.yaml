@@ -4,9 +4,12 @@ esphome:
   board: esp01_1m
 
 wifi:
-  ssid: !secret wifi_ssid
-  password: !secret wifi_pw
-  fast_connect: on
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_pw
+  - ssid: !secret wifi_ssid2
+    password: !secret wifi_pw
+  reboot_timeout: 0s
 
 # Enable logging
 logger:
@@ -14,6 +17,7 @@ logger:
 # Enable Home Assistant API
 api:
   password: !secret esp_api_pw
+  reboot_timeout: 0s
 
 ota:
   password: !secret esp_api_pw
@@ -43,4 +47,5 @@ sensor:
       name: "room_temperature"
     humidity:
       name: "room_humidity"
+      accuracy_decimals: 1
     update_interval: 30s
