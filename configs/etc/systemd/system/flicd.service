@@ -1,11 +1,13 @@
 [Unit]
-Description=flic daemon
-After=rc-local.service
+Description=flicd Service
+After=bluetooth.service
+Requires=bluetooth.service
 
 [Service]
-Type=simple
-User=root
+TimeoutStartSec=0
 ExecStart=/home/pi/flicd -f /home/pi/flic.sqlite3
+Restart=always
+RestartSec=3
 
 [Install]
 WantedBy=multi-user.target
