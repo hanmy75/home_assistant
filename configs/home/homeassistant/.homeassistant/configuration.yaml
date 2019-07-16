@@ -43,7 +43,7 @@ updater:
   # include_used_components: true
 
 # Discover some devices automatically
-discovery:
+#discovery:
 
 system_health:
 
@@ -100,6 +100,12 @@ media_player:
     mac: 50:56:bf:50:80:7f
     name: home_un55f7100
 
+cast:
+  media_player:
+    - host: 192.168.0.20
+    - host: 192.168.0.21
+    - host: 192.168.0.23
+
 # Binary Sensor
 binary_sensor:
   - platform: flic
@@ -117,9 +123,6 @@ sensor:
     name: "밝기"
     entity_id: sensor.brightness
     filters:
-#      - filter: outlier
-#        window_size: 4
-#        radius: 4.0
       - filter: lowpass
         time_constant: 10
         precision: 2
@@ -134,8 +137,7 @@ sensor:
         window_size: 4
         radius: 4.0
       - filter: lowpass
-        time_constant: 10
-        precision: 2
+        time_constant: 20
 
   - platform: filter
     name: "습도"
@@ -143,9 +145,9 @@ sensor:
     filters:
       - filter: outlier
         window_size: 4
-        radius: 2.0
+        radius: 4.0
       - filter: lowpass
-        time_constant: 10
+        time_constant: 20
 
   - platform: history_stats
     name: Watching TV today
