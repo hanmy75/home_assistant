@@ -62,8 +62,6 @@ Reference : https://www.home-assistant.io/docs/installation/raspberry-pi
 ```
 $ sudo adduser hmy75
 $ sudo adduser hmy75 users
-$ sudo adduser hmy75 debian-transmission
-$ sudo adduser debian-transmission users
 $ sudo smbpasswd -a hmy75
 ```
 
@@ -71,9 +69,16 @@ $ sudo smbpasswd -a hmy75
 ```
 $ cd ~
 $ git clone https://github.com/hanmy75/home_assistant.git
+$ sudo systemctl stop transmission-daemon
 $ sudo cp ~/home_assistant/configs/* / -rf
 $ sudo chown pi.users *.sh
 $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
+$ sudo chown -R hmy75:hmy75 /etc/transmission-daemon
+$ sudo mkdir -p /home/hmy75/.config/transmission-daemon/
+$ sudo ln -s /etc/transmission-daemon/settings.json /home/hmy75/.config/transmission-daemon/
+$ sudo chown -R hmy75:hmy75 /home/hmy75/.config/transmission-daemon/
+$ sudo systemctl daemon-reload
+$ sudo systemctl start transmission-daemon
 ```
 
 
