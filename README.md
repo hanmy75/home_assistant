@@ -12,7 +12,8 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip python-pip git dnsmasq certbot nginx libssl-dev libffi-dev
+$ sudo apt-get install python3 python3-venv python3-pip python-pip git certbot nginx libssl-dev libffi-dev
+$ sudo apt-get install samba samba-common-bin transmission-daemon
 $ sudo pip2 install esphomeyaml
 ```
 
@@ -57,12 +58,21 @@ $ pip3 install --upgrade homeassistant
 Reference : https://www.home-assistant.io/docs/installation/raspberry-pi
 
 
+### Add user and update samba config
+```
+$ sudo adduser hmy75
+$ sudo adduser hmy75 users
+$ sudo adduser hmy75 debian-transmission
+$ sudo adduser debian-transmission users
+$ sudo smbpasswd -a hmy75
+```
+
 ### Install configuration and script
 ```
 $ cd ~
 $ git clone https://github.com/hanmy75/home_assistant.git
 $ sudo cp ~/home_assistant/configs/* / -rf
-$ sudo chown pi.pi turn_off.sh cert_renew.sh
+$ sudo chown pi.users *.sh
 $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 ```
 
@@ -71,8 +81,6 @@ $ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
 ```
 $ sudo systemctl enable home-assistant@homeassistant
 $ sudo systemctl start home-assistant@homeassistant
-$ sudo systemctl enable flicd
-$ sudo systemctl start flicd
 $ sudo systemctl enable autologin@.service
 ```
 
