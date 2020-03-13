@@ -1,0 +1,57 @@
+
+# Configure a default setup of Home Assistant (frontend, api, etc)
+default_config:
+
+# Uncomment this if you are using SSL/TLS, running in Docker container, etc.
+# http:
+#   base_url: example.duckdns.org:8123
+
+# Text to speech
+tts:
+  - platform: google_translate
+    language: 'ko'
+    cache: false
+
+# DDNS
+duckdns:
+  domain: !secret duckdns_domain
+  access_token: !secret duckdns_token
+
+# For Google Home Assistant
+google_assistant:
+  project_id: my-s-home-control-ffd58
+  exposed_domains:
+    - switch
+    - script
+    - camera
+
+# Shell script
+shell_command:
+  play_sbs_radio: '~/.homeassistant/play_radio.py "SBS Power FM"'
+
+  play_mbc_radio: '~/.homeassistant/play_radio.py "MBC FM4U"'
+
+  play_kbs_radio: '~/.homeassistant/play_radio.py "KBS 1FM"'
+
+
+# Sensor
+sensor:
+  - platform: cert_expiry
+    host: !secret https_url
+    name: '인증서'
+
+#  - platform: rest
+#    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
+#    name: 'sbs_radio'
+#    scan_interval: 300
+#    value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
+#
+#  - platform: rest
+#    resource: 'http://miniplay.imbc.com/AACLiveURL.ashx?protocol=M3U8&channel=mfm&agent=android&androidVersion=24'
+#    name: 'mbc_radio'
+#    scan_interval: 300
+
+group: !include groups.yaml
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
