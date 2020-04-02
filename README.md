@@ -93,21 +93,3 @@ $ sudo systemctl enable autologin@.service
 ```
 $ sudo certbot certonly --standalone -d example.com
 ```
-
-### Renew SSL Certificate
-```
-$ crontab -e
-------------------------------------------------------
-0 */12 * * * root /home/pi/cert_renew.sh
-------------------------------------------------------
-```
-
-### PIN Out
-```
-+5V : RED
-GND : BROWN
-RF SW  : GPIO18 BLUE
-MOTION : GPIO22 GREEN
-LIGHT  : GPIO27 YELLOW
-THERMAL: GPIO17 ORANGE
-```
