@@ -1,0 +1,51 @@
+esphome:
+  name: sensor
+  platform: ESP8266
+  board: esp01_1m
+
+wifi:
+  networks:
+  - ssid: !secret wifi_ssid
+    password: !secret wifi_pw
+  - ssid: !secret wifi_ssid2
+    password: !secret wifi_pw
+  reboot_timeout: 0s
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+  password: !secret esp_api_pw
+  reboot_timeout: 0s
+
+ota:
+  password: !secret esp_api_pw
+
+binary_sensor:
+  - platform: gpio
+    name: "motion"
+    pin:
+      number: GPIO05
+      mode: INPUT
+
+sensor:
+  - platform: adc
+    pin: A0
+    name: "brightness"
+    icon: "mdi:theme-light-dark"
+    update_interval: 10s
+    unit_of_measurement: "%"
+    filters:
+      - multiply: -500.0
+      - offset: 100.0
+
+  - platform: dht
+    pin: GPIO14
+    model: AM2302
+    temperature:
+      name: "room_temperature"
+    humidity:
+      name: "room_humidity"
+      accuracy_decimals: 1
+    update_interval: 30s
