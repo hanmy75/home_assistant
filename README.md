@@ -14,7 +14,12 @@ $ sudo apt-get upgrade -y
 ```
 $ sudo apt-get install python3 python3-venv python3-pip python-pip git certbot nginx libssl-dev libffi-dev
 $ sudo apt-get install samba samba-common-bin transmission-daemon ffmpeg mkchromecast mkchromecast-pulseaudio
-$ pip3 install esphome
+```
+
+- Install ESPHome
+```
+$ git clone https://github.com/hanmy75/esphome.git
+$ cd esphome; ./script/setup
 ```
 
 - Add an account for Home Assistant and create a directory
