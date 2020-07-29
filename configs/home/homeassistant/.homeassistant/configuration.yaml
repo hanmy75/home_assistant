@@ -23,6 +23,7 @@ google_assistant:
   exposed_domains:
     - switch
     - script
+    - climate
     - camera
 
 # Shell script
