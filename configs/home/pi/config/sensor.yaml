@@ -7,9 +7,12 @@ wifi:
   networks:
   - ssid: !secret wifi_ssid
     password: !secret wifi_pw
-  - ssid: !secret wifi_ssid2
-    password: !secret wifi_pw
   reboot_timeout: 0s
+
+  # Enable fallback hotspot (captive portal) in case wifi connection fails
+  ap:
+    ssid: "Carrier Ac"
+    password: "house000"
 
 # Enable logging
 logger:
@@ -21,6 +24,17 @@ api:
 
 ota:
   password: !secret esp_api_pw
+
+remote_transmitter:
+  pin:
+    number: GPIO12
+  carrier_duty_percent: 50%
+
+climate:
+  - platform: carrier
+    name: "Living Room AC"
+    supports_heat: False
+    sensor: temp_sensor
 
 binary_sensor:
   - platform: gpio
@@ -39,13 +53,23 @@ sensor:
     filters:
       - multiply: -500.0
       - offset: 100.0
+      - lambda: |-
+          if (x  < 0.0) return 0.0;
+          return x;
 
   - platform: dht
     pin: GPIO14
     model: AM2302
     temperature:
       name: "room_temperature"
+      id: temp_sensor
+      filters:
+        - median:
+            window_size: 7
     humidity:
       name: "room_humidity"
       accuracy_decimals: 1
-    update_interval: 30s
+      filters:
+        - median:
+            window_size: 7
+    update_interval: 10s
