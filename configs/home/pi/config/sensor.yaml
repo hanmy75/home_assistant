@@ -12,7 +12,7 @@ wifi:
   # Enable fallback hotspot (captive portal) in case wifi connection fails
   ap:
     ssid: "Carrier Ac"
-    password: "house000"
+    password: !secret wifi_pw
 
 # Enable logging
 logger:
@@ -33,12 +33,15 @@ remote_transmitter:
 climate:
   - platform: carrier
     name: "Living Room AC"
+    id: carrier_ac
     supports_heat: False
     sensor: temp_sensor
+    threshold: 4
 
 binary_sensor:
   - platform: gpio
     name: "motion"
+    device_class: motion
     pin:
       number: GPIO05
       mode: INPUT
@@ -51,8 +54,8 @@ sensor:
     update_interval: 10s
     unit_of_measurement: "%"
     filters:
-      - multiply: -500.0
-      - offset: 100.0
+      - multiply: -540.0
+      - offset: 50.0
       - lambda: |-
           if (x  < 0.0) return 0.0;
           return x;
@@ -73,3 +76,40 @@ sensor:
         - median:
             window_size: 7
     update_interval: 10s
+
+switch:
+  - platform: template
+    name: "Dehumidifier"
+    icon: "mdi:weather-rainy"
+    lambda: |-
+      if (id(carrier_ac).mode == 4) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - climate.control:
+          id: carrier_ac
+          mode: 'DEHUMIDY'
+    turn_off_action:
+      - climate.control:
+          id: carrier_ac
+          mode: 'OFF'
+
+  - platform: template
+    name: "Cleaner"
+    icon: "mdi:weather-windy"
+    lambda: |-
+      if (id(carrier_ac).mode == 5) {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - climate.control:
+          id: carrier_ac
+          mode: 'CLEAN'
+    turn_off_action:
+      - climate.control:
+          id: carrier_ac
+          mode: 'OFF'
