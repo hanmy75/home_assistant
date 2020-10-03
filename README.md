@@ -12,8 +12,8 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip python-pip git certbot nginx libssl-dev libffi-dev
-$ sudo apt-get install samba samba-common-bin transmission-daemon ffmpeg mkchromecast mkchromecast-pulseaudio
+$ sudo apt-get install python3 python3-venv python3-pip python-pip git certbot nginx libnginx-mod-rtmp libssl-dev libffi-dev
+$ sudo apt-get install samba samba-common-bin transmission-daemon ffmpeg
 ```
 
 - Install ESPHome

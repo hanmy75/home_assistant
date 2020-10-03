@@ -27,12 +27,10 @@ google_assistant:
     - camera
 
 # Shell script
-shell_command:
-  play_sbs_radio: '~/.homeassistant/play_radio.py "SBS Power FM"'
-
-  play_mbc_radio: '~/.homeassistant/play_radio.py "MBC FM4U"'
-
-  play_kbs_radio: '~/.homeassistant/play_radio.py "KBS 1FM"'
+#shell_command:
+#  play_sbs_radio: '~/.homeassistant/play_radio.py "SBS Power FM"'
+#  play_mbc_radio: '~/.homeassistant/play_radio.py "MBC FM4U"'
+#  play_kbs_radio: '~/.homeassistant/play_radio.py "KBS 1FM"'
 
 # Binary Sensor
 binary_sensor:
@@ -56,11 +54,11 @@ sensor:
     duration:
       hours: 24
 
-#  - platform: rest
-#    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
-#    name: 'sbs_radio'
-#    scan_interval: 300
-#    value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
+  - platform: rest
+    name: 'sbs_radio'
+    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
+    scan_interval: 300
+    value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
 #
 #  - platform: rest
 #    resource: 'http://miniplay.imbc.com/AACLiveURL.ashx?protocol=M3U8&channel=mfm&agent=android&androidVersion=24'

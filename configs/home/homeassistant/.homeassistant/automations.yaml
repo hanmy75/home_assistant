@@ -1,1 +1,18 @@
-[]
+- id: '1597471084126'
+  alias: Turn off TV due to over watching
+  description: Turn off TV when over watching
+  trigger:
+  - minutes: /1
+    platform: time_pattern
+  condition:
+  - condition: state
+    entity_id: binary_sensor.on_media
+    state: 'on'
+  - above: '2'
+    condition: numeric_state
+    entity_id: sensor.watching_media
+  action:
+  - data: {}
+    entity_id: media_player.my_box
+    service: media_player.turn_off
+  mode: single
