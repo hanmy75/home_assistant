@@ -34,12 +34,27 @@ shell_command:
 
   play_kbs_radio: '~/.homeassistant/play_radio.py "KBS 1FM"'
 
+# Binary Sensor
+binary_sensor:
+  - platform: template
+    sensors:
+      on_media:
+        friendly_name: "On Media"
+        value_template: >-
+          {{ is_state('media_player.my_box', 'playing') and
+            (is_state_attr('media_player.my_box', 'app_name', 'YouTube') or
+             is_state_attr('media_player.my_box', 'app_name', 'V LIVE')) }}
 
 # Sensor
 sensor:
-  - platform: cert_expiry
-    host: !secret https_url
-    name: '인증서'
+  - platform: history_stats
+    name: Watching Media
+    entity_id: binary_sensor.on_media
+    state: 'on'
+    type: time
+    start: '{{ now().replace(hour=4, minute=0, second=0) }}'
+    duration:
+      hours: 24
 
 #  - platform: rest
 #    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
