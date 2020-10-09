@@ -31,7 +31,7 @@ remote_transmitter:
   carrier_duty_percent: 50%
 
 climate:
-  - platform: carrier
+  - platform: climate_carrier
     name: "Living Room AC"
     id: carrier_ac
     supports_heat: False
@@ -54,11 +54,14 @@ sensor:
     update_interval: 10s
     unit_of_measurement: "%"
     filters:
-      - multiply: -540.0
+      - multiply: -600.0
       - offset: 50.0
       - lambda: |-
           if (x  < 0.0) return 0.0;
+          if (x  > 99.0) return 99.0;
           return x;
+      - median:
+          window_size: 7
 
   - platform: dht
     pin: GPIO14
@@ -76,40 +79,3 @@ sensor:
         - median:
             window_size: 7
     update_interval: 10s
-
-switch:
-  - platform: template
-    name: "Dehumidifier"
-    icon: "mdi:weather-rainy"
-    lambda: |-
-      if (id(carrier_ac).mode == 4) {
-        return true;
-      } else {
-        return false;
-      }
-    turn_on_action:
-      - climate.control:
-          id: carrier_ac
-          mode: 'DEHUMIDY'
-    turn_off_action:
-      - climate.control:
-          id: carrier_ac
-          mode: 'OFF'
-
-  - platform: template
-    name: "Cleaner"
-    icon: "mdi:weather-windy"
-    lambda: |-
-      if (id(carrier_ac).mode == 5) {
-        return true;
-      } else {
-        return false;
-      }
-    turn_on_action:
-      - climate.control:
-          id: carrier_ac
-          mode: 'CLEAN'
-    turn_off_action:
-      - climate.control:
-          id: carrier_ac
-          mode: 'OFF'
