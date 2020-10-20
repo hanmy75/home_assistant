@@ -43,6 +43,11 @@ $ source bin/activate
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ python3 -m pip install wheel
 ```
 
+- Install extra package.
+```
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip install youtube-dl pafy
+```
+
 - Install Home Assistant
 ```
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install homeassistant

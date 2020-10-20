@@ -3,8 +3,7 @@
 default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
-# http:
-#   base_url: example.duckdns.org:8123
+http:
 
 # Text to speech
 tts:
@@ -43,6 +42,8 @@ binary_sensor:
             (is_state_attr('media_player.my_box', 'app_name', 'YouTube') or
              is_state_attr('media_player.my_box', 'app_name', 'V LIVE')) }}
 
+  - platform: mystrom
+
 # Sensor
 sensor:
   - platform: history_stats
@@ -59,11 +60,15 @@ sensor:
     resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
     scan_interval: 300
     value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
-#
-#  - platform: rest
-#    resource: 'http://miniplay.imbc.com/AACLiveURL.ashx?protocol=M3U8&channel=mfm&agent=android&androidVersion=24'
-#    name: 'mbc_radio'
-#    scan_interval: 300
+
+  - platform: command_line
+    name: music_url
+    command: "python ~/.homeassistant/get_music_url.py {{ states('input_text.music_url') }}"
+
+input_text:
+  music_url:
+    name: Music URL
+    icon: mdi:music
 
 group: !include groups.yaml
 automation: !include automations.yaml
