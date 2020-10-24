@@ -1,27 +1,27 @@
-'1583674553285':
-  alias: Play SBS Radio
+ost:
+  alias: OST
   sequence:
-  - data_template:
-      media_content_id: '{{ states(''sensor.sbs_radio'') }}'
-      media_content_type: music
-    entity_id: media_player.my_mini
-    service: media_player.play_media
-  mode: single
-'1583675943799':
-  alias: Play MBC Radio
-  sequence:
-  - data:
-      media_content_id: http://192.168.0.3:8080/dash/mbc.mpd
-      media_content_type: music
-    entity_id: media_player.my_mini
-    service: media_player.play_media
-  mode: single
-play_music:
-  alias: Play Music
-  mode: single
-  sequence:
-  - data_template:
+  - service: media_player.play_media
+    data_template:
       media_content_id: '{{ states(''sensor.music_url'') }}'
       media_content_type: music
     entity_id: media_player.my_mini
-    service: media_player.play_media
+  mode: single
+mbc:
+  alias: MBC
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.0.3:8080/dash/mbc.mpd
+      media_content_type: music
+    entity_id: media_player.my_mini
+  mode: single
+sbs:
+  alias: SBS
+  sequence:
+  - service: media_player.play_media
+    data_template:
+      media_content_id: '{{ states(''sensor.sbs_radio'') }}'
+      media_content_type: music
+    entity_id: media_player.my_mini
+  mode: single

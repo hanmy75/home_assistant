@@ -4,6 +4,11 @@ default_config:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
+  ssl_certificate: /etc/letsencrypt/live/hanmy75.duckdns.org/fullchain.pem
+  ssl_key: /etc/letsencrypt/live/hanmy75.duckdns.org/privkey.pem
+
+# Activate the configuration editor
+config:
 
 # Text to speech
 tts:

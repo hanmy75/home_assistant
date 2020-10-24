@@ -102,4 +102,8 @@ $ sudo systemctl enable autologin@.service
 ### Get SSL Certificate
 ```
 $ sudo certbot certonly --standalone -d example.com
+
+$ sudo chmod 755 /etc/letsencrypt/live/
+$ sudo chmod 755 /etc/letsencrypt/archive/
+$ sudo chmod -R 777 /etc/letsencrypt/
 ```
