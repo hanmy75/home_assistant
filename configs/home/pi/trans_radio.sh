@@ -4,7 +4,7 @@
 config_mbc()
 {
 	export MBC_URL=$1
-	envsubst  < nginx.conf.template > /etc/nginx/nginx.conf
+	envsubst  < /etc/nginx/nginx.conf.template > /etc/nginx/nginx.conf
 	systemctl restart nginx
 }
 
@@ -20,8 +20,8 @@ config_kbs()
 # Main
 case "$1" in
 	start)
-		config_mbc "$(./get_radio_url.py 'MBC FM')"
-		config_kbs "$(./get_radio_url.py 'KBS 1FM')"
+		config_mbc "$(/home/pi/get_radio_url.py 'MBC FM4U')"
+		config_kbs "$(/home/pi/get_radio_url.py 'KBS 1FM')"
 	;;
 	stop)
 		config_mbc "rtmp://localhost"
