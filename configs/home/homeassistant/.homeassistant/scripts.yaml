@@ -25,3 +25,18 @@ sbs:
       media_content_type: music
     entity_id: media_player.my_mini
   mode: single
+kbs:
+  alias: KBS
+  sequence:
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.0.3:8080/dash/kbs.mpd
+      media_content_type: music
+    entity_id: media_player.my_mini
+  mode: single
+radio_on:
+  alias: Radio On
+  sequence:
+  - service: shell_command.enable_trans_radio
+    data: {}
+  mode: single

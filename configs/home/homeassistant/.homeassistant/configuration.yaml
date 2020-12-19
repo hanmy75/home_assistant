@@ -47,7 +47,7 @@ binary_sensor:
             (is_state_attr('media_player.my_box', 'app_name', 'YouTube') or
              is_state_attr('media_player.my_box', 'app_name', 'V LIVE')) }}
 
-  - platform: mystrom
+#  - platform: mystrom
 
 # Sensor
 sensor:
@@ -56,9 +56,8 @@ sensor:
     entity_id: binary_sensor.on_media
     state: 'on'
     type: time
-    start: '{{ now().replace(hour=4, minute=0, second=0) }}'
-    duration:
-      hours: 24
+    start: '{{ now().replace(hour=0, minute=0, second=0) }}'
+    end: '{{ now() }}'
 
   - platform: rest
     name: 'sbs_radio'
@@ -66,14 +65,19 @@ sensor:
     scan_interval: 300
     value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
 
-  - platform: command_line
-    name: music_url
-    command: "python ~/.homeassistant/get_music_url.py {{ states('input_text.music_url') }}"
+#  - platform: command_line
+#    name: music_url
+#    command: "python ~/.homeassistant/get_music_url.py {{ states('input_text.music_url') }}"
 
 input_text:
   music_url:
     name: Music URL
     icon: mdi:music
+
+shell_command:
+  enable_trans_radio:  /home/pi/trans_radio.sh start
+
+  disable_trans_radio: /home/pi/trans_radio.sh stop
 
 group: !include groups.yaml
 automation: !include automations.yaml

@@ -16,3 +16,25 @@
     entity_id: media_player.my_box
     service: media_player.turn_off
   mode: single
+- id: '1606631807429'
+  alias: Enable Radio
+  description: Enable Radio
+  trigger:
+  - platform: time
+    at: 06:00:00
+  condition: []
+  action:
+  - service: shell_command.enable_trans_radio
+    data: {}
+  mode: single
+- id: '1606631908034'
+  alias: Disable Radio
+  description: Disable Radio
+  trigger:
+  - platform: time
+    at: '23:00:00'
+  condition: []
+  action:
+  - service: shell_command.disable_trans_radio
+    data: {}
+  mode: single
