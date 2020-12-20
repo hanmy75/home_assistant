@@ -2,6 +2,9 @@
 # Configure a default setup of Home Assistant (frontend, api, etc)
 default_config:
 
+homeassistant:
+  time_zone: Asia/Seoul
+
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
   ssl_certificate: /etc/letsencrypt/live/hanmy75.duckdns.org/fullchain.pem
@@ -62,7 +65,7 @@ sensor:
   - platform: rest
     name: 'sbs_radio'
     resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
-    scan_interval: 300
+    scan_interval: 1800
     value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
 
 #  - platform: command_line

@@ -21,7 +21,9 @@
   description: Enable Radio
   trigger:
   - platform: time
-    at: 06:00:00
+    at: 07:00
+  - platform: homeassistant
+    event: start
   condition: []
   action:
   - service: shell_command.enable_trans_radio
@@ -32,7 +34,7 @@
   description: Disable Radio
   trigger:
   - platform: time
-    at: '23:00:00'
+    at: '23:00'
   condition: []
   action:
   - service: shell_command.disable_trans_radio
