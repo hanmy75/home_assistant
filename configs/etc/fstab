@@ -1,8 +1,0 @@
-proc            /proc           proc    defaults          0       0
-PARTUUID=738a4d67-01  /boot           vfat    defaults          0       2
-PARTUUID=738a4d67-02  /               ext4    defaults,noatime  0       1
-tmpfs   /var/www/html/dash      tmpfs   defaults,noatime,size=8m
-UUID="e4e11ba7-d7f8-407e-ac2c-ba2d69579603" /mnt/HDD        ext4		nosuid,nodev,nofail 0 0
-UUID="0BA9-7FD0"							/mnt/USB		exfat-fuse	nosuid,nodev,nofail 0 0
-# a swapfile is not a swap partition, no line here
-#   use  dphys-swapfile swap[on|off]  for that

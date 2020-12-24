@@ -12,8 +12,19 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install python3 python3-venv python3-pip python-pip git certbot nginx libnginx-mod-rtmp libssl-dev libffi-dev
-$ sudo apt-get install samba samba-common-bin transmission-daemon ffmpeg
+$ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev python3-dev python3-venv python3-pip libffi-dev libtiff-dev autoconf libopenjp2-7
+$ sudo apt-get install git certbot nginx libnginx-mod-rtmp samba samba-common-bin transmission-daemon ffmpeg exfat-fuse exfat-utils
+```
+
+- Install python 3.8.6
+```
+$ wget -O /tmp/Python-3.8.6.tar.xz https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
+$ cd /tmp
+$ tar xf Python-3.8.6.tar.xz
+$ cd Python-3.8.6
+$ ./configure
+$ sudo make altinstall
+$ sudo apt -y autoremove
 ```
 
 - Install ESPHome
@@ -34,18 +45,13 @@ $ sudo chown homeassistant:homeassistant homeassistant
 ```
 $ sudo -u homeassistant -H -s
 $ cd /srv/homeassistant
-$ python3 -m venv .
+$ /usr/local/bin/python3.8 -m venv .
 $ source bin/activate
 ```
 
 - Install a required python package.
 ```
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ python3 -m pip install wheel
-```
-
-- Install extra package.
-```
-(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip install youtube-dl pafy
 ```
 
 - Install Home Assistant
@@ -62,7 +68,7 @@ $ source bin/activate
 ```
 $ sudo -u homeassistant -H -s
 $ source /srv/homeassistant/bin/activate
-$ pip3 install --upgrade homeassistant
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install --upgrade homeassistant
 ```
 
 Reference : https://www.home-assistant.io/docs/installation/raspberry-pi
@@ -89,6 +95,8 @@ $ sudo ln -s /etc/transmission-daemon/settings.json /home/hmy75/.config/transmis
 $ sudo chown -R hmy75:hmy75 /home/hmy75/.config/transmission-daemon/
 $ sudo systemctl daemon-reload
 $ sudo systemctl start transmission-daemon
+$ sudo mkdir -p /mnt/HDD /mnt/USB /var/www/html/dash
+$ sudo cat /etc/fstab /etc/fstab_append > /etc/fstab
 ```
 
 
