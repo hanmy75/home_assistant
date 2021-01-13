@@ -12,19 +12,8 @@ $ sudo apt-get upgrade -y
 
 - Install dependencies
 ```
-$ sudo apt-get install build-essential tk-dev libncurses5-dev libncursesw5-dev libreadline6-dev libdb5.3-dev libgdbm-dev libsqlite3-dev libssl-dev libbz2-dev libexpat1-dev liblzma-dev zlib1g-dev python3-dev python3-venv python3-pip libffi-dev libtiff-dev autoconf libopenjp2-7
-$ sudo apt-get install git certbot nginx libnginx-mod-rtmp samba samba-common-bin transmission-daemon ffmpeg exfat-fuse exfat-utils
-```
-
-- Install python 3.8.6
-```
-$ wget -O /tmp/Python-3.8.6.tar.xz https://www.python.org/ftp/python/3.8.6/Python-3.8.6.tar.xz
-$ cd /tmp
-$ tar xf Python-3.8.6.tar.xz
-$ cd Python-3.8.6
-$ ./configure
-$ sudo make altinstall
-$ sudo apt -y autoremove
+$ sudo apt-get install python3-venv python3-pip
+$ sudo apt-get install git certbot nginx libnginx-mod-rtmp samba samba-common-bin transmission-daemon ffmpeg exfat-fuse
 ```
 
 - Install ESPHome
@@ -45,7 +34,7 @@ $ sudo chown homeassistant:homeassistant homeassistant
 ```
 $ sudo -u homeassistant -H -s
 $ cd /srv/homeassistant
-$ /usr/local/bin/python3.8 -m venv .
+$ python3 -m venv .
 $ source bin/activate
 ```
 
@@ -85,26 +74,7 @@ $ sudo smbpasswd -a hmy75
 ```
 $ cd ~
 $ git clone https://github.com/hanmy75/home_assistant.git
-$ sudo systemctl stop transmission-daemon
-$ sudo cp ~/home_assistant/configs/* / -rf
-$ sudo chown pi.users *.sh
-$ sudo chown homeassistant.homeassistant /home/homeassistant/.homeassistant -R
-$ sudo chown -R hmy75:hmy75 /etc/transmission-daemon
-$ sudo mkdir -p /home/hmy75/.config/transmission-daemon/
-$ sudo ln -s /etc/transmission-daemon/settings.json /home/hmy75/.config/transmission-daemon/
-$ sudo chown -R hmy75:hmy75 /home/hmy75/.config/transmission-daemon/
-$ sudo systemctl daemon-reload
-$ sudo systemctl start transmission-daemon
-$ sudo mkdir -p /mnt/HDD /mnt/USB /var/www/html/dash
-$ sudo cat /etc/fstab /etc/fstab_append > /etc/fstab
-```
-
-
-### Auto login
-```
-$ sudo systemctl enable home-assistant@homeassistant
-$ sudo systemctl start home-assistant@homeassistant
-$ sudo systemctl enable autologin@.service
+$ ~/home_assistant/install.sh
 ```
 
 ### Get SSL Certificate
