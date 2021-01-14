@@ -1,0 +1,96 @@
+{
+    "version": 1,
+    "key": "lovelace",
+    "data": {
+        "config": {
+            "views": [
+                {
+                    "title": "Home",
+                    "path": "home",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "glance",
+                            "entities": [
+                                {
+                                    "entity": "sensor.brightness"
+                                },
+                                {
+                                    "entity": "sensor.room_temperature"
+                                },
+                                {
+                                    "entity": "sensor.room_humidity"
+                                },
+                                {
+                                    "entity": "binary_sensor.motion"
+                                },
+                                {
+                                    "entity": "sensor.cert_expiry_hanmy75_duckdns_org_8123"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "gauge",
+                            "entity": "sensor.watching_media",
+                            "min": 0,
+                            "max": 3,
+                            "severity": {
+                                "green": 0,
+                                "yellow": 0.5,
+                                "red": 1
+                            }
+                        },
+                        {
+                            "type": "thermostat",
+                            "entity": "climate.living_room_ac"
+                        }
+                    ]
+                },
+                {
+                    "title": "Media",
+                    "path": "media",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "media-control",
+                            "entity": "media_player.my_mini"
+                        },
+                        {
+                            "type": "entity",
+                            "entity": "sensor.sbs_radio"
+                        }
+                    ]
+                },
+                {
+                    "title": "Script",
+                    "path": "script",
+                    "badges": [],
+                    "cards": [
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "script.mbc"
+                                },
+                                {
+                                    "entity": "script.sbs"
+                                },
+                                {
+                                    "entity": "script.kbs"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "entities",
+                            "entities": [
+                                {
+                                    "entity": "automation.turn_off_tv_due_to_over_watching"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}
