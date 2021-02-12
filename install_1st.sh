@@ -8,7 +8,7 @@ sudo apt-get upgrade -y
 
 # Install package
 sudo apt-get install python3-venv python3-pip -y
-sudo apt-get install git certbot nginx libnginx-mod-rtmp samba samba-common-bin transmission-daemon ffmpeg exfat-fuse -y
+sudo apt-get install git certbot nginx libnginx-mod-rtmp php-fpm samba samba-common-bin transmission-daemon ffmpeg exfat-fuse -y
 
 # Change password
 echo "Change your password"
