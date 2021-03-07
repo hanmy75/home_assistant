@@ -1,11 +1,19 @@
 #!/usr/bin/python3
 import sys
+import time
 import requests, re, json
 
 def url_func(url):
     resp = requests.get(url)
     data = resp.content.decode("utf-8")
     return data
+
+def check_valid_url(url):
+	try:
+		resp = requests.get(url)
+	except requests.exceptions.RequestException as e:
+		return 0
+	return 1
 
 def kbs_func(code):
     Base_URL = 'http://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=' + code
@@ -21,7 +29,8 @@ def kbs_func(code):
     return url
 
 def mbc_func(code):
-    Base_URL = 'http://miniplay.imbc.com/AACLiveURL.ashx?channel=' + code + '&type=android&protocol=M3U8'
+    #Base_URL = 'http://miniplay.imbc.com/AACLiveURL.ashx?channel=' + code + '&type=android&protocol=M3U8'
+    Base_URL = 'http://miniplay.imbc.com/AACLiveURL.ashx?channel=' + code + '&type=iphone&agent=iphone&protocol=M3U8'
     url = url_func(Base_URL)
     ### Double query
     #url_root = url.rsplit('/', 1)[0]
@@ -64,8 +73,15 @@ def ch_func(ch):
     else:
         print("Argument(%s) is missing or invalid!" % ch)
         quit()
+
     return url
 
-
 # Main
-print(ch_func(sys.argv[1]))
+valid_url = 0
+radio_url = ""
+while valid_url == 0:
+	radio_url = ch_func(sys.argv[1])
+	valid_url = check_valid_url(radio_url)
+	time.sleep(0.1)
+
+print(radio_url)

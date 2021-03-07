@@ -24,7 +24,8 @@ case "$1" in
 	;;
 	stop)
 		killall ffmpeg
-		config_mbc ""
-		config_kbs ""
+		rm -rf /var/www/html/dash/*
+		#config_mbc ""
+		#config_kbs ""
 	;;
 esac
