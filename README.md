@@ -15,10 +15,13 @@ $ cd /srv/homeassistant
 $ python3 -m venv .
 $ source /srv/homeassistant/bin/activate
 
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ python3 -m pip install --upgrade pip
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install wheel
 (homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install homeassistant
   or
-(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install homeassistant=0.116.1
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install homeassistant==0.116.1
+
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ hass
 ~~~
 
 ### Update homeassistant
