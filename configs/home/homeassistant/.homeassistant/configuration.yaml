@@ -26,7 +26,7 @@ duckdns:
 
 # For Google Home Assistant
 google_assistant:
-  project_id: my-s-home-control-ffd58
+  project_id: my-s-home-control-cfcc7
   exposed_domains:
     - switch
     - script
@@ -46,9 +46,9 @@ binary_sensor:
       on_media:
         friendly_name: "On Media"
         value_template: >-
-          {{ is_state('media_player.mytv', 'playing') and
-            (is_state_attr('media_player.mytv', 'app_name', 'YouTube') or
-             is_state_attr('media_player.mytv', 'app_name', 'V LIVE')) }}
+          {{ is_state('media_player.my_tv', 'playing') and
+            (is_state_attr('media_player.my_tv', 'app_name', 'YouTube') or
+             is_state_attr('media_player.my_tv', 'app_name', 'V LIVE')) }}
 
 #  - platform: mystrom
 

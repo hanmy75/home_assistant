@@ -13,7 +13,7 @@
     entity_id: sensor.watching_media
   action:
   - data: {}
-    entity_id: media_player.mytv
+    entity_id: media_player.my_tv
     service: media_player.turn_off
   mode: single
 - id: '1606631807429'
@@ -39,4 +39,27 @@
   action:
   - service: shell_command.disable_trans_radio
     data: {}
+  mode: single
+- id: '1617375258587'
+  alias: Morning Radio
+  description: ''
+  trigger:
+  - platform: time
+    at: '7:50'
+  condition:
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    - fri
+    after: '6:00'
+    before: '12:00'
+  action:
+  - service: media_player.play_media
+    data:
+      media_content_id: http://192.168.0.3:8080/dash/mbc.mpd
+      media_content_type: music
+    entity_id: media_player.my_mini
   mode: single

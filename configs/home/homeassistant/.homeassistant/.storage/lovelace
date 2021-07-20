@@ -54,10 +54,6 @@
                         {
                             "type": "media-control",
                             "entity": "media_player.my_mini"
-                        },
-                        {
-                            "type": "entity",
-                            "entity": "sensor.sbs_radio"
                         }
                     ]
                 },
@@ -67,16 +63,35 @@
                     "badges": [],
                     "cards": [
                         {
-                            "type": "entities",
-                            "entities": [
+                            "type": "horizontal-stack",
+                            "cards": [
                                 {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
                                     "entity": "script.mbc"
                                 },
                                 {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
                                     "entity": "script.sbs"
                                 },
                                 {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
                                     "entity": "script.kbs"
+                                },
+                                {
+                                    "type": "button",
+                                    "tap_action": {
+                                        "action": "toggle"
+                                    },
+                                    "entity": "script.radio_on"
                                 }
                             ]
                         },
