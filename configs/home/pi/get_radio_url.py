@@ -1,11 +1,23 @@
 #!/usr/bin/python3
-import sys
-import time
-import requests, re, json
 
-def url_func(url):
-    resp = requests.get(url)
+import requests, re, json
+import subprocess, sys
+import os, signal
+
+
+# Get items
+def SafeGetItems(dct, *keys):
+    for key in keys:
+        try:
+            dct = dct[key]
+        except KeyError:
+            return None
+    return dct
+
+def get_url(url, hh):
+    resp = requests.get(url, headers=hh)
     data = resp.content.decode("utf-8")
+
     return data
 
 def check_valid_url(url):
@@ -16,60 +28,76 @@ def check_valid_url(url):
 	return 1
 
 def kbs_func(code):
-    Base_URL = 'http://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=' + code
-    WebHTML = url_func(Base_URL)
-    Temp_Web_URL = re.compile('http://.*_lsu_sa_=[0-9a-z]*').findall(WebHTML)
-    url = Temp_Web_URL[0].split('\\', 1)[0]
-    ### Double query
-    #url_root = url.rsplit('/', 1)[0]
-    #M3U = url_func(url)
-    #M3U = re.compile('.*m3u.*').findall(M3U)[0]
-    #url = url_root + '/' + M3U
-    ###
+    url = ""
+    hh = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36', 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7', 'Accept-Encoding' : 'gzip, deflate'}
+    request_url = "https://onair.kbs.co.kr/index.html?sname=onair&stype=live&ch_code=" + code
+
+    WebHTML = get_url(request_url, hh)
+    for line in WebHTML.split("\n"):
+        if "service_url" in line:
+            subLines = line.split("'")
+            data = json.loads(subLines[1].replace("\\", ""))
+            channelInfos = SafeGetItems(data, "channel_item")
+            if channelInfos:
+                for channelInfo in channelInfos:
+                    # Find Radio channel
+                    if channelInfo["media_type"] == "radio":
+                        url = channelInfo["service_url"]
+
     return url
 
 def mbc_func(code):
-    #Base_URL = 'http://miniplay.imbc.com/AACLiveURL.ashx?channel=' + code + '&type=android&protocol=M3U8'
-    Base_URL = 'http://miniplay.imbc.com/AACLiveURL.ashx?channel=' + code + '&type=iphone&agent=iphone&protocol=M3U8'
-    url = url_func(Base_URL)
-    ### Double query
-    #url_root = url.rsplit('/', 1)[0]
-    #M3U = url_func(url)
-    #M3U = re.compile('.*m3u.*').findall(M3U)[0]
-    #url = url_root + '/' + M3U
-    ###
+
+    hh = {'User-Agent' : 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/80.0.3987.122 Safari/537.36', 'Referer' : 'http://mini.imbc.com/', 'Accept-Language' : 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7', 'Accept-Encoding' : 'gzip, deflate'}
+    request_url = 'http://miniplay.imbc.com/WebHLS.ashx?channel=' + code + '&protocol=M3U8&agent=ios&nocash=0.4'
+    url = get_url(request_url, hh)
+
     return url
 
 def sbs_func(code):
-    Base_URL = 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/' + code + '?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
-    data = json.loads(url_func(Base_URL))
-    url = data.get('onair').get('source').get('mediasource').get('mediaurl')
-    ### Double query
-    #print(url)
-    #M3U = url_func(url)
-    #url = re.compile('.*m3u.*').findall(M3U)[0]
-    ###
+
+    sbs_ch = {'powerfm' : 'powerpc', 'lovefm': 'lovepc'}
+    SBS_URL = 'https://apis.sbs.co.kr/play-api/1.0/livestream/{}/{}?protocol=hls&ssl=Y'
+    sbsheader = {
+        'Host': 'apis.sbs.co.kr',
+        'Connection': 'keep-alive',
+        'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_16_0) AppleWebKit/537.36 (KHTML, like Gecko) GOREALRA/1.2.1 Chrome/85.0.4183.121 Electron/10.1.3 Safari/537.36',
+        'Accept': '*/*',
+        'Origin': 'https://gorealraplayer.radio.sbs.co.kr',
+        'Sec-Fetch-Site': 'same-site',
+        'Sec-Fetch-Mode': 'cors',
+        'Sec-Fetch-Dest': 'empty',
+        'Referer': 'https://gorealraplayer.radio.sbs.co.kr/main.html?v=1.2.1',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Accept-Language': 'ko',
+        'If-None-Match': 'W/"134-0OoLHiGF4IrBKYLjJQzxNs0/11M"'
+    }
+
+    url = get_url(SBS_URL.format(sbs_ch[code], code), sbsheader)
+
     return url
 
 def ch_func(ch):
-    if   ch == "KBS 1FM":
-        url = kbs_func('24')
-    elif ch == "KBS 2FM":
-        url = kbs_func('25')
-    elif ch == "KBS 1R":
-        url = kbs_func('21')
-    elif ch == "KBS 2R":
-        url = kbs_func('22')
-    elif ch == "KBS 3R":
-        url = kbs_func('23')
-    elif ch == "MBC FM4U":
-        url = mbc_func('mfm')
-    elif ch == "MBC FM":
-        url = mbc_func('sfm')
-    elif ch == "SBS Power FM":
-        url = sbs_func('S07')
-    elif ch == "SBS Love FM":
-        url = sbs_func('S08')
+
+    channelCodes = {
+        "KBS 1FM" : "24",
+        "KBS 2FM" : "25",
+        "KBS 1R"  : "21",
+        "KBS 2R"  : "22",
+        "KBS 3R"  : "23",
+        "MBC FM4U"  : "mfm",
+        "MBC FM"    : "sfm",
+        "MBC ALL"   : "chm",
+        "SBS Power FM" : "powerfm",
+        "SBS Love FM"  : "lovefm",
+    }
+
+    if "KBS" in ch:
+        url = kbs_func(channelCodes[ch])
+    elif "MBC" in ch:
+        url = mbc_func(channelCodes[ch])
+    elif "SBS" in ch:
+        url = sbs_func(channelCodes[ch])
     else:
         print("Argument(%s) is missing or invalid!" % ch)
         quit()
@@ -77,11 +105,9 @@ def ch_func(ch):
     return url
 
 # Main
-valid_url = 0
-radio_url = ""
-while valid_url == 0:
-	radio_url = ch_func(sys.argv[1])
-	valid_url = check_valid_url(radio_url)
-	time.sleep(0.1)
+#radio_url = ch_func("MBC FM4U")
+#radio_url = ch_func("SBS Love FM")
+#radio_url = ch_func("KBS 2FM")
+radio_url = ch_func(sys.argv[1])
 
 print(radio_url)

@@ -1,31 +1,23 @@
 #! /bin/bash
 
-# Config for MBC
-config_mbc()
+# Config ffmpge
+config_ffmpeg()
 {
-	MBC_URL=$1
-	ffmpeg -re  -i ${MBC_URL} -c:a copy -bsf:a aac_adtstoasc -f flv rtmp://localhost/live/mbc &>/dev/null &
+	URL=$1
+	INDEX=$2
+	ffmpeg -re  -i ${URL} -c:a copy -bsf:a aac_adtstoasc -f flv rtmp://localhost/live/${INDEX} &>/dev/null &
 }
-
-# Config for KBS
-config_kbs()
-{
-	KBS_URL=$1
-	ffmpeg -re  -i ${KBS_URL} -c:a copy -bsf:a aac_adtstoasc -f flv rtmp://localhost/live/kbs &>/dev/null &
-}
-
 
 # Main
 case "$1" in
 	start)
 		killall ffmpeg
-		config_mbc "$(/home/pi/get_radio_url.py 'MBC FM4U')"
-		config_kbs "$(/home/pi/get_radio_url.py 'KBS 1FM')"
+		config_ffmpeg "$(/home/pi/get_radio_url.py 'MBC FM4U')" "mbc"
+		config_ffmpeg "$(/home/pi/get_radio_url.py 'SBS Power FM')" "sbs"
+		config_ffmpeg "$(/home/pi/get_radio_url.py 'KBS 2FM')" "kbs"
 	;;
 	stop)
 		killall ffmpeg
 		rm -rf /var/www/html/dash/*
-		#config_mbc ""
-		#config_kbs ""
 	;;
 esac
