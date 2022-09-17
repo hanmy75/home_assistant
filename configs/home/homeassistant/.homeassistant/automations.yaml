@@ -11,6 +11,14 @@
   - above: '1'
     condition: numeric_state
     entity_id: sensor.watching_media
+  - condition: time
+    weekday:
+    - mon
+    - tue
+    - wed
+    - thu
+    after: '6:00'
+    before: '23:59'
   action:
   - data: {}
     entity_id: media_player.my_tv
@@ -20,11 +28,14 @@
   alias: Enable Radio
   description: Enable Radio
   trigger:
-  - platform: time
-    at: 07:00
+  - platform: time_pattern
+    minutes: /1
   - platform: homeassistant
     event: start
-  condition: []
+  condition:
+  - condition: time
+    after: '6:00'
+    before: '22:00'
   action:
   - service: shell_command.enable_trans_radio
     data: {}
@@ -45,7 +56,7 @@
   description: ''
   trigger:
   - platform: time
-    at: '7:50'
+    at: '8:00'
   condition:
   - condition: time
     weekday:

@@ -21,7 +21,7 @@ sbs:
   sequence:
   - service: media_player.play_media
     data_template:
-      media_content_id: '{{ states(''sensor.sbs_radio'') }}'
+      media_content_id: http://192.168.0.3:8080/dash/sbs.mpd
       media_content_type: music
     entity_id: media_player.my_mini
   mode: single

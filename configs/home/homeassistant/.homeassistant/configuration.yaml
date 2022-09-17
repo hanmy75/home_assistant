@@ -62,11 +62,11 @@ sensor:
     start: '{{ now().replace(hour=0, minute=0, second=0) }}'
     end: '{{ now() }}'
 
-  - platform: rest
-    name: 'sbs_radio'
-    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
-    scan_interval: 1800
-    value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
+#  - platform: rest
+#    name: 'sbs_radio'
+#    resource: 'http://apis.sbs.co.kr/play-api/1.0/onair/channel/S07?v_type=2&platform=pcweb&protocol=hls&ssl=N&jwt-token=&rnd=101'
+#    scan_interval: 1800
+#    value_template: '{{ value_json["onair"]["source"]["mediasource"]["mediaurl"] }}'
 
 #  - platform: command_line
 #    name: music_url
