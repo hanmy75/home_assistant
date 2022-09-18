@@ -78,9 +78,9 @@ input_text:
     icon: mdi:music
 
 shell_command:
-  enable_trans_radio:  /home/pi/trans_radio.sh start
+  enable_trans_radio:  /home/pi/trans_radio.py start
 
-  disable_trans_radio: /home/pi/trans_radio.sh stop
+  disable_trans_radio: /home/pitrans_radio.py stop
 
 group: !include groups.yaml
 automation: !include automations.yaml
