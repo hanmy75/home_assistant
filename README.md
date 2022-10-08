@@ -4,8 +4,10 @@ Home Assistant configuration
 ### Download script and install 1st stage
 ~~~
 $ sudo apt-get install git -y
-$ git clone https://github.com/hanmy75/home_assistant.git
-$ ~/home_assistant/install_1st.sh
+$ mkdir ~/GitHub
+$ cd ~/GitHub
+$ git clone git@github.com:hanmy75/home_assistant.git
+$ ./install_1st.sh
 ~~~
 
 ### Install homeassistant
@@ -34,7 +36,8 @@ $ source /srv/homeassistant/bin/activate
 
 ### Install 2nd stage
 ~~~
-$ ~/home_assistant/install_2nd.sh
+$ cd ~/GitHub
+$ ./install_2nd.sh
 ~~~
 
 ### Get SSL Certificate
