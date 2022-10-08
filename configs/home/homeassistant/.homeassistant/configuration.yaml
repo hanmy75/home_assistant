@@ -7,8 +7,10 @@ homeassistant:
 
 # Uncomment this if you are using SSL/TLS, running in Docker container, etc.
 http:
-  ssl_certificate: /etc/letsencrypt/live/hanmy75.duckdns.org/fullchain.pem
-  ssl_key: /etc/letsencrypt/live/hanmy75.duckdns.org/privkey.pem
+  use_x_forwarded_for: true
+  trusted_proxies:
+    - 127.0.0.1
+    - ::1
 
 # Activate the configuration editor
 config:
@@ -78,9 +80,9 @@ input_text:
     icon: mdi:music
 
 shell_command:
-  enable_trans_radio:  /home/pi/trans_radio.py start
+  enable_trans_radio:  /home/hmy75/trans_radio.py start
 
-  disable_trans_radio: /home/pitrans_radio.py stop
+  disable_trans_radio: /home/hmy75/trans_radio.py stop
 
 group: !include groups.yaml
 automation: !include automations.yaml

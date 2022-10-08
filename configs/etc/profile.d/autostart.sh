@@ -2,5 +2,5 @@
 
 if [ "`tty`" = "/dev/tty1" ]; then
     # Turn off LED and HDMI
-    /home/pi/turn_off.sh
+    /home/hmy75/turn_off.sh
 fi
