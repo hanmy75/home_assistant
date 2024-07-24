@@ -48,3 +48,10 @@ $ sudo chmod 755 /etc/letsencrypt/live/
 $ sudo chmod 755 /etc/letsencrypt/archive/
 $ sudo chmod -R 777 /etc/letsencrypt/
 ```
+
+### rclone Configuration
+```
+https://rclone.org/googlephotos/
+https://m.blog.naver.com/destinyrev/222515975596
+```
+
