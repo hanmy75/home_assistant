@@ -36,6 +36,8 @@ sudo cp /tmp/fstab /etc/fstab
 # Auto log-in
 sudo systemctl daemon-reload
 sudo systemctl start transmission-daemon
+sudo systemctl enable magicmirror.service
+sudo systemctl start magicmirror.service
 sudo systemctl enable home-assistant@homeassistant
 sudo systemctl start home-assistant@homeassistant
 sudo systemctl enable autologin@.service

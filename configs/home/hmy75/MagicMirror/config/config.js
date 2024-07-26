@@ -39,7 +39,13 @@ let config = {
 		},
 		{
 			module: "clock",
-			position: "top_left"
+			position: "top_left",
+			config: {
+				timeFormat: 12,
+				displaySeconds: false,
+				showPeriod: false,
+				dateFormat: "MM/DD ddd"
+			}
 		},
 		{
 			module: "weather",
@@ -47,8 +53,9 @@ let config = {
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: 40.776676,
-				lon: -73.971321
+				onlyTemp: true,
+				lat: 37.330342,
+				lon: 127.118300
 			}
 		},
                 {

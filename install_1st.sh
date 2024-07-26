@@ -19,6 +19,14 @@ sudo pip3 install --upgrade pip
 sudo pip3 install pre-commit
 sudo pip3 install psutil
 
+# Install Magic Mirror2 & MMM-BackgroundSlideShow
+git clone https://github.com/MichMich/MagicMirror ~/MagicMirror/
+git clone https://github.com/darickc/MMM-BackgroundSlideshow ~/MagicMirror/modules/MMM-BackgroundSlideshow
+cd ~/MagicMirror/
+npm install --only=prod --omit=dev
+cd ~/MagicMirror/modules/MMM-BackgroundSlideshow
+npm install
+
 # Add user and update samba config
 echo "Add samba user"
 sudo smbpasswd -a $USER
