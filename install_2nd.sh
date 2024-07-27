@@ -7,9 +7,9 @@ SOURCE_DIR=$PWD
 sudo sed -i "/MAX_LENGTH_STATE_STATE/ c\MAX_LENGTH_STATE_STATE: Final = 1024" /srv/homeassistant/lib/python3.9/site-packages/homeassistant/const.py
 
 # Install ESPHome
-cd $SOURCE_DIR/../
-git clone https://github.com/hanmy75/esphome.git
-cd $SOURCE_DIR/../esphome; export CRYPTOGRAPHY_DONT_BUILD_RUST=1; ./script/setup
+#cd $SOURCE_DIR/../
+#git clone https://github.com/hanmy75/esphome.git
+#cd $SOURCE_DIR/../esphome; export CRYPTOGRAPHY_DONT_BUILD_RUST=1; ./script/setup
 
 # Stop nginx & transmission service
 sudo systemctl stop nginx
@@ -40,4 +40,4 @@ sudo systemctl enable magicmirror.service
 sudo systemctl start magicmirror.service
 sudo systemctl enable home-assistant@homeassistant
 sudo systemctl start home-assistant@homeassistant
-sudo systemctl enable autologin@.service
+#sudo systemctl enable autologin@.service
