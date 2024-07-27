@@ -80,9 +80,9 @@ input_text:
     icon: mdi:music
 
 shell_command:
-  enable_trans_radio:  /home/hmy75/trans_radio.py start
+  enable_trans_radio:  '~/.homeassistant/trans_radio.py start'
 
-  disable_trans_radio: /home/hmy75/trans_radio.py stop
+  disable_trans_radio: '~/.homeassistant/trans_radio.py stop'
 
 group: !include groups.yaml
 automation: !include automations.yaml
