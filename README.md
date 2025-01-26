@@ -31,7 +31,7 @@ $ source /srv/homeassistant/bin/activate
 $ sudo -u homeassistant -H -s
 $ source /srv/homeassistant/bin/activate
 
-(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install --upgrade homeassistant
+(homeassistant) homeassistant@raspberrypi:/srv/homeassistant $ pip3 install --upgrade homeassistant=2024.3.3
 ~~~
 
 ### Install 2nd stage
